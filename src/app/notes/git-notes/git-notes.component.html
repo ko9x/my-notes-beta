@@ -1,409 +1,278 @@
-
-
 <div class="container">
-  <br><br>
-  <h1>Git And GitHub Notes</h1>
+  <div class="page-header section-header" id="0">
+    <h1>Git And GitHub Notes <small>select a section from the Git Notes dropdown</small></h1>
+    <button class="btn btn-success" routerLink="/notes/git-notes/new">Add A Note</button>
+  </div>
 
   <div id="1">
-    <br>
-    <br>
-    <h2>MISC GIT NOTES</h2>
+    <h2 class="section-header">MISC GIT NOTES</h2>
 
-    <h3>HEAD</h3>
-    <p>This refers to the most recent commit of the current branch.</p>
+    <hr>
 
-    <h3>IGNORE A FILE SO IT WONT GET TRACKED OR COMMITTED</h3>
-    <p>To ignore a file add it to the .gitignore file </p>
+    <div *ngFor="let note of notes">
+      <div *ngIf="note.section === 'misc'">
+        <h3>{{note.title}}</h3>
+        <p>{{note.content}}</p>
+        <div *ngIf="note.side">
+          <h5 class="side"><strong>SIDE NOTE</strong></h5>
+          <p>{{note.side}}</p>
+        </div>
+        <div *ngIf="note.important">
+          <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+          <p>{{note.important}}</p>
+        </div>
+      </div>
+    </div>
 
-    <h2>CHANGING A FILE NAME WITH GIT</h2>
+    <hr>
 
-    <h3>git mv “filename” “newfilename”</h3>
-    <p>This will change the name of the file and keep it tracked by git. But you need to make sure to commit this change because
-      using the mv command does not commit that change to git until you actually do so using git commit -m “what ever comment
-      you want”</p>
+    <div id="2">
 
-    <h2>REMOVING A FILE WITH GIT</h2>
+      <h2 class="section-header">GENERAL COMMANDS</h2>
 
-    <h3>git rm “filename”</h3>
-    <p>This command will remove the file from the directory and git will track that the file has been removed. But you must
-      commit this change before git will actually update that it has been removed. So make sure to run git commit -m “comment
-      about deleting the file” </p>
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'general'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div id="3">
+      <h2 class="section-header">COMMIT COMMANDS</h2>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'commit'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div id="4">
+      <h2 class="section-header">LOG COMMANDS</h2>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'log'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div id="5">
+      <h2 class="section-header">DIFF COMMANDS SECTION</h2>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'diff'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div id="6">
+      <h1 class="section-header">BRANCH SECTION</h1>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'branch'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div id="7">
+      <h2 class="section-header">MERGING COMMANDS</h2>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'merge'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="8">
+      <h2 class="section-header">TAG COMMANDS</h2>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'tag'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div id="9">
+      <h2 class="section-header">STASH COMMANDS</h2>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'stash'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="10">
+      <h2 class="section-header">TIME-TRAVEL/RESET COMMANDS</h2>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'time-travel'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div id="11">
+      <h1 class="section-header">REMOTE GIT COMMANDS SECTION</h1>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'remote'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="12">
+      <h1 class="section-header">CLONING NOTES</h1>
+
+      <hr>
+
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.section === 'cloning'">
+          <h3>{{note.title}}</h3>
+          <p>{{note.content}}</p>
+          <div *ngIf="note.side">
+            <h5 class="side"><strong>SIDE NOTE</strong></h5>
+            <p>{{note.side}}</p>
+          </div>
+          <div *ngIf="note.important">
+            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
+            <p>{{note.important}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <br><br><br><br><br><br>
   </div>
-
-  <hr>
-
-  <div id="2">
-    <br>
-    <br>
-    <h2>GIT COMMANDS</h2>
-
-    <h3>git cat “filename”</h3>
-    <p>This will show the contents of the file named filename in the terminal.</p>
-
-    <h3>git init .</h3>
-    <p>This will add git to the directory you are currently in</p>
-
-    <h3>git status</h3>
-    <p>This will show you what has been modified since the last time you made a commit</p>
-
-    <h3>git ls-files</h3>
-    <p>This command will show you all the files that git is tracking</p>
-
-    <h3>git add “filename”</h3>
-    <p>This will allow you to add a particular folder or file to a commit</p>
-
-    <h3>git add .</h3>
-    <p>This will add everything that has been modified since the last commit to the current commit. </p>
-
-    <h3>git reset HEAD “filename”</h3>
-    <p>This command will remove the changes that were added to the staging area. It won’t actually modify the file that was
-      added but it will just forget that you had added it to the staging area. This is if you added it accidentally or just
-      wanted to make some other change before adding to the staging area and then commiting it.</p>
-
-    <h3>git checkout -- “filename”</h3>
-    <p>This command WILL modify the file that was added and revert it back its state at the last commit.</p>
-  </div>
-
-  <hr>
-
-  <div id="3">
-    <br>
-    <br>
-    <h2>COMMIT COMMANDS</h2>
-
-    <h3>git commit</h3>
-    <p>This will open the editor and let you type your commit message in a large window that shows all the files included in
-      the commit
-    </p>
-
-    <h3>git commit -m “add a comment explaining what is new"</h3>
-    <p>This will add an comment to the commit without needing to open the window and add the commit there.</p>
-
-    <h3>git commit -a</h3>
-    <p>This will add all the tracked files and any changes made to them to the commit and then open a window so you can add
-      your comment in the editor</p>
-
-
-    <h3>git commit -am “add commit message here”</h3>
-    <p>This will let you add all the modified files to the commit and add a comment without needing to open the editor window</p>
-  </div>
-
-  <hr>
-
-  <div id="4">
-    <br>
-    <br>
-    <h2>LOG COMMANDS</h2>
-
-    <h3>git log</h3>
-    <p>This will show you all the commits that you have made.</p>
-
-    <h3>exit git log</h3>
-    <p>To exit git log press q</p>
-
-    <h3>git log --oneline</h3>
-    <p>This will show the log on single lines</p>
-
-    <h3>git reflog</h3>
-    <p>This will all the different actions that have been taken in the repository. this can be a pretty long list so only use
-      it if you need it.</p>
-
-    <h3>git show</h3>
-    <p>This will show the most recent commit message, the files that were added to the commit and what modifications were made
-      to those files.</p>
-
-    <h3>git show “full sha id”</h3>
-    <p>This will show you all the details about a specific commit</p>
-
-    <h3>exit show</h3>
-    <p>To exit git show press q</p>
-
-    <h3>git hist</h3>
-    <p>This is a git shortcut that I made using git alias this command will show you a condensed history of all the commits
-      to the project you are currently in.</p>
-
-    <h3>git hist -- “filename”</h3>
-    <p>This command will give a condensed history of all the commits that included the selected file.</p>
-
-    <h3>git hist creation code</h3>
-    <p>This is how git hist was created git config --global alias.hist "log --oneline --graph --decorate --all"</p>
-  </div>
-
-  <hr>
-
-  <div id="5">
-    <br>
-    <br>
-    <h2>DIFF COMMANDS SECTION</h2>
-
-    <h3>git diff</h3>
-    <p>This command will show you all the differences between the most recent commit and all the files in the directory you
-      are in
-    </p>
-
-    <h3>git diff (a git reference number) HEAD</h3>
-    <p>This command will show you all the differences between the reference numbers commit and the most recent commit</p>
-
-    <h3>git difftool </h3>
-    <p>This command will open the p4merge window and make it easier to see what is different and I think you can use it to modify
-      the files but I have not done that yet. you can use difftool or diff in place of each other, diff will show the data
-      in the terminal and p4merge will show it in an easier to read window.</p>
-  </div>
-
-  <hr>
-
-
-  <div id="6">
-    <br>
-    <br>
-    <h1>BRANCH SECTION</h1>
-
-
-    <h3>git branch</h3>
-    <p>This command will show you what branch you are on</p>
-
-    <h3>git branch -a</h3>
-    <p>This command will show you all the branches that the local directory is aware of. </p>
-
-    <h2>DELETE A BRANCH</h2>
-
-    <h3>git branch -d “branch name”</h3>
-    <p>This command will delete the branch</p>
-    <strong class="important">IMPORTANT NOTE</strong>
-    <p>After deleting a branch push the changes to the repo with</p>
-    <h3>git push</h3>
-    <p>And then run</p>
-    <h3>git fetch -p </h3>
-    <p>This will remove any reference to deleted branches</p>
-    <p><strong class="side"> SIDE NOTE </strong></p>
-    <p>The above command is usually used to clear out remaining records of branches that have been removed from the remote repo
-      and then that change was fetched.</p>
-
-    <h2>DELETE A REMOTE BRANCH FROM THE TERMINAL</h2>
-
-    <h3>git push origin :branch name</h3>
-    <p>Make sure to add the colon and then type the name of the remote branch you want to delete.</p>
-    <p><strong class="important">IMPORTANT SIDE NOTE</strong></p>
-    <p>This is pretty much only going to be done after you delete a branch in the local repo and then want the remote repo to
-      be updated with that change (the deleted branch)</p>
-
-    <h2>SWITCH TO A DIFFERENT BRANCH</h2>
-
-    <h3>git checkout “branch name”</h3>
-    <p>This command will switch the HEAD to whatever branch you specified</p>
-
-    <h2>CREATING A NEW BRANCH AND SWITCHING TO IT</h2>
-
-    <h3>git checkout -b “branch name”</h3>
-    <p>This will create a new branch and also move the HEAD to this new branch. essentially moving you into a new branch and
-      out of the master branch</p>
-
-    <h2>SWITCHING BACK TO THE MASTER BRANCH</h2>
-
-    <h3>git checkout master</h3>
-    <p>This will switch the HEAD back to the master branch</p>
-  </div>
-
-  <hr>
-
-  <div id="7">
-    <br>
-    <br>
-    <h2>MERGING COMMANDS</h2>
-
-    <h3>git merge “branch name”</h3>
-    <p>If it is a simple merge it will use the fast forward, for more complex merges it may be a little more difficult to merge
-      them. But I’ll get to that later.</p>
-
-
-    <h3>git mergetool </h3>
-    <p>This will open the p4merge window and show you the merging files. Use this command if you encounter a merging error or
-      failure.
-    </p>
-  </div>
-
-  <div id="8">
-    <br>
-    <br>
-    <h2>TAG COMMANDS</h2>
-
-    <h3>git tag</h3>
-    <p>This command will list all of the tags for the current directory</p>
-
-    <h3>git tag “tag name”</h3>
-    <p>Just makes a light-weight tag that doesn’t have any associated data but just places that tag on the current commit.</p>
-
-    <h3>git tag “tag name” “commit ref”</h3>
-    <p>This will make a light-weight tag on the commit that is specified with the tag ref id</p>
-
-    <h3>git tag -a “tag name” -m “a message or note about the tag”</h3>
-    <p>This is an annotated tag. It will provide more information about why the commit was tagged.</p>
-    <p><strong class="side">SIDE NOTE</strong></p>
-    <p>Use git show “tag name” to see the information.</p>
-
-    <h3>git tag -a “tag name” -m “a message or note about the tag” “ref”</h3>
-    <p>This will make an annotated tag at the commit that is referenced at the end of the command</p>
-
-    <h3>git tag -d “tag name”</h3>
-    <p>This command will delete the tag named “tag name”</p>
-    <p><strong class="side">SIDE NOTE</strong></p>
-    <p>You have deleted the tag locally you can delete it from the remote repo by using this command</p>
-    <h3>git push origin :tag name</h3>
-    <p><strong class="side">ADDITIONAL SIDE NOTE</strong></p>
-    <p>After updating/moving the tag on the local directory you will most likely want to update the remote repo with that change</p>
-    <h3>git push —force origin “tag name”</h3>
-    <p>This will force the remote repo to update the tag. (you need to use the force flag because git sees a tag with that name
-      already exists and doesn’t want to do anything to change it)</p>
-
-    <h3>git tag —list </h3>
-    <p>This will list all the tags</p>
-
-    <h2>UPDATE AN EXISTING TAG</h2>
-
-    <h3>git tag -f “tag name” “commit ref”</h3>
-    <p>This will move the existing tag to the new commit ref specified.</p>
-    <p><strong class="side">SIDE NOTE</strong></p>
-    <p>Just like most git commands, if you don’t add a commit ref to the end of the command it will assume you are moving the
-      tag to the HEAD position. (the most recent commit)</p>
-
-    <h2>PUSHING TAGS TO GITHUB</h2>
-
-    <h3>git push “tag name”</h3>
-    <p>This command will push the specified tag to the remote repository</p>
-
-    <h3>git push —tags</h3>
-    <p>This command will push all the tags to the remote repository</p>
-  </div>
-
-  <hr>
-
-  <div id="9">
-    <br>
-    <br>
-    <h2>STASH COMMANDS</h2>
-
-    <h3>git stash</h3>
-    <p>This will allow you to stash some changes that have not been added yet, so you can add and commit them at a later point.</p>
-
-    <h3>git stash list</h3>
-    <p>This will show you the stashes and where they were made</p>
-
-    <h3>git stash pop</h3>
-    <p>This will basically unstash your stashed changes so you can then add and commit them.</p>
-  </div>
-
-  <div id="10">
-    <br>
-    <br>
-    <h2>TIME-TRAVEL/RESET COMMANDS</h2>
-
-    <h3>git reset (some previous commit id) --soft</h3>
-    <p>This will move the HEAD to the commit point specified and leave all the uncommitted files as they were, for example if
-      I had a file that was in the staging area and another that had not been added to the staging area at the time I did
-      the soft reset, they would be in the same places. keep in mind any files you commit in this new HEAD location will
-      be saved in this new HEAD location. seems obvious but I wanted to make a note of it.</p>
-
-    <h3>git reset (some previous commit id)</h3>
-    <p>This will run the default reset which is —mixed The HEAD will be moved to the commit that was specified and any staged
-      files will now be moved out of the staging area and need to be added again in order to be committed. keep in mind any
-      files you commit in this new HEAD location will be saved in this new HEAD location. seems obvious but I wanted to make
-      a note of it.</p>
-
-    <h3>git reset (some previous commit id) --hard</h3>
-    <p>The HEAD will be moved to the commit that was specified and this will remove any staged or unstaged files at the point
-      the command was run. only run this type of reset if you are sure you don’t care about the data that has not been committed
-      at the point the command was run. keep in mind any files you commit in this new HEAD location will be saved in this
-      new HEAD location. seems obvious but I wanted to make a note of it.</p>
-
-    <h3>git reflog</h3>
-    <p>This command is used to see all the actions that have been taken and make sure you put the HEAD in the right place.</p>
-  </div>
-
-  <hr>
-
-  <div id="11">
-    <br>
-    <br>
-    <h1>REMOTE GIT COMMANDS SECTION</h1>
-
-    <h3>git remote -v</h3>
-    <p>This will show any remote connections to the project you are currently in.</p>
-
-    <h3>git push -u origin master</h3>
-    <p>or</p>
-    <h3>git push -u origin master —tags </h3>
-    <p>(Only add —tags if you have some tags in the project already) This will update the repository on github so make sure
-      you are ready to save those changes to the remote repository before you enter this command</p>
-    <p><strong class="side">SIDE NOTE </strong></p>
-    <p>You only need to add the -u the first time you push to github</p>
-
-    <h3>git push</h3>
-    <p>Once you have your repository set up you can just use the git push command. This command will just push the updated files
-      on the branch that you are on. So if you want to update multiple branches you will need to navigate to each branch
-      and push them individually.</p>
-
-    <h3>git fetch</h3>
-    <p>This command will retrieve all the changes on the remote repository and integrate them into the local repository. So
-      its like the reverse of a git push.</p>
-    <p><strong class="side">SIDE NOTE</strong></p>
-    <p>You also use git fetch to update the local directory with any branches that have been added to the remote repo. BUT to
-      add a new branch that was created on the remote you’ll need to check it out. Run this command after fetching the branch</p>
-    <h3>git checkout “new branch name”</h3>
-    <p>Git will check your local directory for a branch with that name, if it doesn’t find one it will then check the remote
-      repo. You will be automatically switched to the new branch,</p>
-    <p>any changes that you make can be updated on the remote new branch by running</p>
-    <h3>git push</h3>
-    <p>Just make sure you are still in the new branch or else the changes will get push to whatever remote branch corresponds
-      to the branch you are in when you run the push command.</p>
-
-    <h3>git pull</h3>
-    <p>This command will basically do a fetch and then merge the data between the remote repo (github) and the local directory
-      in which we are working.</p>
-    <p><strong class="important">IMPORTANT SIDE NOTE</strong></p>
-    <p>You will need to do a git push after the pull is complete to update the remote repo and save the changes made by the
-      pull command to the remote repo.</p>
-
-    <h3>git pull --all</h3>
-    <p>This command will update all the branches that are being tracked with the data on the remote repo. git pull will just
-      get the data corresponding to the branch you are currently in. </p>
-
-
-    <h3>Changing the name of the remote repository</h3>
-    <p>If you decide to change the name of the remote repo you will need to copy the clone link again, navigate to the directory
-      in terminal and run this command git remote set-url origin “paste the url here without quotes”</p>
-    <p><strong class="side">SIDE NOTE</strong></p>
-    <p>Use git remote -v to double check you have linked the correct remote repo to the project directory.</p>
-
-    <h1>ADDING A BRANCH ON THE LOCAL DIRECTORY THEN PUSHING TO THE REMOTE REPO</h1>
-
-    <h3>git checkout -b “new branch name” (don’t add quotes)</h3>
-    <p>This will create a new branch with whatever name give it. once you have created the branch and you want to push it to
-      the remote repo you will need to run</p>
-    <h3>git push -u origin “new branch name”</h3>
-    <p>The -u sets up the tracking for the new branch on the remote repo</p>
-  </div>
-
-  <div id="12">
-    <br>
-    <br>
-    <h1>CLONING A PROJECT</h1>
-
-    <p>Copy the link to the clipboard and cd into the directory where you want to create a cloned project folder. now type git
-      clone and then paste the link into the terminal.</p>
-
-    <h3>git remote rm origin</h3>
-    <p>Run this command while inside the folder that you just cloned to disconnect it from the remote repository. This is if
-      you don’t want to make any changed to the original project. Now make a new repository on git hub and make sure to:
-      name it the same as your project folder, make sure not to add the read me file, and do not add the gitignore or license
-      files, just leave that stuff alone. now copy the link that says something like git remote add origin followed by an
-      address and copy that into the terminal. make sure you are in the correct directory (the root of your new project)
-      and then run the command (press enter)</p>
-
-    <h3>then run npm install</h3>
-    <p>This will install the node_modules folder and some other stuff an angular 2 app needs. its the stuff listed in the package.json
-      the node modules folder is not uploaded to the repository because its too big and its easy enough to run npm install.</p>
-  </div>
-
-
-<br><br><br><br><br><br>
-</div>

@@ -13,17 +13,19 @@ export class GitNoteAddComponent implements OnInit {
   gitNoteForm: FormGroup;
   notes = [];
   sections = [
-    'General',
-    'Commit',
-    'Log',
-    'Diff',
-    'Branch',
-    'Merge',
-    'Tag',
-    'Stash',
-    'Time-Travel/Reset',
-    'Remote',
-    'Misc'
+    'misc',
+    'general',
+    'commit',
+    'log',
+    'diff',
+    'branch',
+    'merge',
+    'tag',
+    'stash',
+    'time-travel',
+    'remote',
+    'cloning'
+    
   ]
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService) { }
@@ -32,7 +34,9 @@ export class GitNoteAddComponent implements OnInit {
     this.gitNoteForm = this.formBuilder.group({
       section: ['', Validators.required],
       title: ['', Validators.required],
-      content: ['', Validators.required]
+      content: ['', Validators.required],
+      side: [''],
+      important: ['']
     })
   }
 
@@ -45,12 +49,6 @@ export class GitNoteAddComponent implements OnInit {
     this.gitNoteForm.reset();
   }
 
-  // sendData() {
-  //   this.noteService.storeNote()
-  //     .subscribe(
-  //     data => console.log(data),
-  //     error => console.log(error)
-  //     )
-  // }
+
 
 }

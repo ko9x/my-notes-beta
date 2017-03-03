@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Note } from '../note';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
+import 'rxjs/Rx';
 
 @Injectable()
 export class NoteService {
@@ -11,13 +12,19 @@ export class NoteService {
 
 
 
-storeNote(note: Note) {
+  storeNote(note: Note) {
     const body = JSON.stringify(note);
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
-    return this.http.post('https://my-notes-64d6a.firebaseio.com/notes.json', body, {headers: headers});
+    return this.http.post('https://my-notes-64d6a.firebaseio.com/notes.json', body, { headers: headers });
   }
+
+  fetchNote() {
+    return this.http.get("https://my-notes-64d6a.firebaseio.com/notes.json")
+      .map((response: Response) => response.json());
+  }
+
 
 }
 
