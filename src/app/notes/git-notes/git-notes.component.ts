@@ -33,6 +33,10 @@ export class GitNotesComponent implements OnInit {
       )
   }
 
+  onClicked(note: Note) {
+    console.log(note)
+  }
+
 
 
 }

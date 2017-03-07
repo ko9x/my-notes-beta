@@ -9,7 +9,7 @@
 
     <hr>
 
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes; let i = index">
       <div *ngIf="note.section === 'misc'">
         <h3>{{note.title}}</h3>
         <p>{{note.content}}</p>
@@ -20,6 +20,10 @@
         <div *ngIf="note.important">
           <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
           <p>{{note.important}}</p>
+        </div>
+        <div *ngIf="isEditable">
+          <button class="btn btn-info btn-xs" (click)="onEdit(note)">Edit</button>
+          <button class="btn btn-danger btn-xs" (click)="onDelete(note)">Delete</button>
         </div>
       </div>
     </div>
