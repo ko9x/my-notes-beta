@@ -4,7 +4,7 @@ import { HomeComponent } from './home.component';
 import { GitNotesComponent } from './notes/git-notes/git-notes.component';
 
 const APP_ROUTES: Routes = [
-    {path: 'my-notes', loadChildren: 'app/notes/notes.module#NotesModule'},
+    {path: 'notes', loadChildren: 'app/notes/notes.module#NotesModule'},
     {path: '', component: HomeComponent }
 ];
 
