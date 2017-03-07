@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { NoteService } from '../service/note.service';
 
@@ -28,7 +29,7 @@ export class GitNoteAddComponent implements OnInit {
     
   ]
 
-  constructor(private formBuilder: FormBuilder, private noteService: NoteService) { }
+  constructor(private formBuilder: FormBuilder, private noteService: NoteService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.gitNoteForm = this.formBuilder.group({
@@ -46,7 +47,11 @@ export class GitNoteAddComponent implements OnInit {
       data => console.log(data),
       error => console.log(error)
       )
-    this.gitNoteForm.reset();
+    this.navigateBack();
+  }
+
+  navigateBack() {
+    this.router.navigate(['/git-notes']);
   }
 
 
