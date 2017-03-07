@@ -3,280 +3,97 @@
     <h1>Git And GitHub Notes <small>select a section from the Git Notes dropdown</small></h1>
     <button class="btn btn-success" routerLink="/notes/git-notes/new">Add A Note</button>
   </div>
-
   <div id="1">
     <h2 class="section-header">MISC GIT NOTES</h2>
-
     <hr>
-
     <div *ngFor="let note of notes; let i = index">
-      <div *ngIf="note.section === 'misc'">
-        <h3>{{note.title}}</h3>
-        <p>{{note.content}}</p>
-        <div *ngIf="note.side">
-          <h5 class="side"><strong>SIDE NOTE</strong></h5>
-          <p>{{note.side}}</p>
-        </div>
-        <div *ngIf="note.important">
-          <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-          <p>{{note.important}}</p>
-        </div>
-        <div *ngIf="isEditable">
-          <button class="btn btn-info btn-xs" (click)="onEdit(note)">Edit</button>
-          <button class="btn btn-danger btn-xs" (click)="onDelete(note)">Delete</button>
-        </div>
-      </div>
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'misc'"></app-git-note-item>
     </div>
-
-    <hr>
-
-    <div id="2">
-
-      <h2 class="section-header">GENERAL COMMANDS</h2>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'general'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <hr>
-
-    <div id="3">
-      <h2 class="section-header">COMMIT COMMANDS</h2>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'commit'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div id="4">
-      <h2 class="section-header">LOG COMMANDS</h2>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'log'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div id="5">
-      <h2 class="section-header">DIFF COMMANDS SECTION</h2>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'diff'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div id="6">
-      <h1 class="section-header">BRANCH SECTION</h1>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'branch'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div id="7">
-      <h2 class="section-header">MERGING COMMANDS</h2>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'merge'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="8">
-      <h2 class="section-header">TAG COMMANDS</h2>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'tag'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div id="9">
-      <h2 class="section-header">STASH COMMANDS</h2>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'stash'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="10">
-      <h2 class="section-header">TIME-TRAVEL/RESET COMMANDS</h2>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'time-travel'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div id="11">
-      <h1 class="section-header">REMOTE GIT COMMANDS SECTION</h1>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'remote'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="12">
-      <h1 class="section-header">CLONING NOTES</h1>
-
-      <hr>
-
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.section === 'cloning'">
-          <h3>{{note.title}}</h3>
-          <p>{{note.content}}</p>
-          <div *ngIf="note.side">
-            <h5 class="side"><strong>SIDE NOTE</strong></h5>
-            <p>{{note.side}}</p>
-          </div>
-          <div *ngIf="note.important">
-            <h5 class="important"><strong>IMPORTANT NOTE</strong></h5>
-            <p>{{note.important}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <br><br><br><br><br><br>
   </div>
+  <hr>
+  <div id="2">
+    <h2 class="section-header">GENERAL COMMANDS</h2>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'general'"></app-git-note-item>
+    </div>
+  </div>
+  <hr>
+  <div id="3">
+    <h2 class="section-header">COMMIT COMMANDS</h2>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'commit'"></app-git-note-item>
+    </div>
+  </div>
+  <hr>
+  <div id="4">
+    <h2 class="section-header">LOG COMMANDS</h2>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'log'"></app-git-note-item>
+    </div>
+  </div>
+  <hr>
+  <div id="5">
+    <h2 class="section-header">DIFF COMMANDS SECTION</h2>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'diff'"></app-git-note-item>
+    </div>
+  </div>
+  <hr>
+  <div id="6">
+    <h1 class="section-header">BRANCH SECTION</h1>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'branch'"></app-git-note-item>
+    </div>
+  </div>
+  <hr>
+  <div id="7">
+    <h2 class="section-header">MERGING COMMANDS</h2>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'merge'"></app-git-note-item>
+    </div>
+  </div>
+  <div id="8">
+    <h2 class="section-header">TAG COMMANDS</h2>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'tag'"></app-git-note-item>
+    </div>
+  </div>
+  <hr>
+  <div id="9">
+    <h2 class="section-header">STASH COMMANDS</h2>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'stash'"></app-git-note-item>
+    </div>
+  </div>
+  <div id="10">
+    <h2 class="section-header">TIME-TRAVEL/RESET COMMANDS</h2>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'time-travel'"></app-git-note-item>
+    </div>
+  </div>
+  <hr>
+  <div id="11">
+    <h1 class="section-header">REMOTE GIT COMMANDS SECTION</h1>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'remote'"></app-git-note-item>
+    </div>
+  </div>
+  <div id="12">
+    <h1 class="section-header">CLONING NOTES</h1>
+    <hr>
+    <div *ngFor="let note of notes">
+      <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'cloning'"></app-git-note-item>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+</div>

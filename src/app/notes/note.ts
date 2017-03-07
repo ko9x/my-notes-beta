@@ -5,6 +5,7 @@ export class Note {
         public title: 'string',
         public content: 'string',
         public side: 'string',
-        public important: 'string'
+        public important: 'string',
+        public isEditable: boolean
     ) { }
 }

@@ -8,6 +8,7 @@ import { GitNoteEditComponent } from './git-notes/git-note-edit.component';
 import { GitNoteAddComponent } from './git-notes/git-note-add.component';
 import { NoteService } from './service/note.service';
 import { notesRouting } from './notes.routing';
+import { GitNoteItemComponent } from './git-notes/git-note-item.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { notesRouting } from './notes.routing';
     ReactiveFormsModule,
     notesRouting
   ],
-  declarations: [GitNotesComponent, GitNoteEditComponent, GitNoteAddComponent],
+  declarations: [GitNotesComponent, GitNoteEditComponent, GitNoteAddComponent, GitNoteItemComponent],
   providers: [NoteService]
 })
 export class NotesModule { }

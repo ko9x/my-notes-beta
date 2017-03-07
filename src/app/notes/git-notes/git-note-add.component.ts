@@ -37,7 +37,8 @@ export class GitNoteAddComponent implements OnInit {
       title: ['', Validators.required],
       content: ['', Validators.required],
       side: [''],
-      important: ['']
+      important: [''],
+      isEditable: false
     })
   }
 

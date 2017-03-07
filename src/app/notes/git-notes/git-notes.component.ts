@@ -33,8 +33,8 @@ export class GitNotesComponent implements OnInit {
       )
   }
 
-  onClicked(note: Note) {
-    console.log(note)
+  onCanEdit(note: Note) {
+    note.isEditable = !note.isEditable;
   }
 
 
