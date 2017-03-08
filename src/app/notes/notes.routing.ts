@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { GitNotesComponent } from './git-notes/git-notes.component';
-import { GitNoteAddComponent } from './git-notes/git-note-add.component';
-import { GitNoteEditComponent } from './git-notes/git-note-edit.component';
+import { GitNoteAddComponent } from './git-notes/git-note-add/git-note-add.component';
+import { GitNoteEditComponent } from './git-notes/git-note-edit/git-note-edit.component';
 
 
 const NOTES_ROUTES: Routes = [

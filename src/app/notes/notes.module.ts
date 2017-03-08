@@ -4,8 +4,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { GitNotesComponent } from './git-notes/git-notes.component';
-import { GitNoteEditComponent } from './git-notes/git-note-edit.component';
-import { GitNoteAddComponent } from './git-notes/git-note-add.component';
+import { GitNoteEditComponent } from './git-notes/git-note-edit/git-note-edit.component';
+import { GitNoteAddComponent } from './git-notes/git-note-add/git-note-add.component';
 import { NoteService } from './service/note.service';
 import { notesRouting } from './notes.routing';
 import { GitNoteItemComponent } from './git-notes/git-note-item.component';

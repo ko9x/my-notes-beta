@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NoteService } from '../service/note.service';
+import { NoteService } from '../../service/note.service';
 @Component({
   selector: 'app-git-note-edit',
   templateUrl: './git-note-edit.component.html',
