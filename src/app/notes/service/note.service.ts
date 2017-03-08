@@ -25,13 +25,6 @@ export class NoteService {
       .map((response: Response) => response.json());
   }
 
-  changeIsEditable(note: Note) {
-    let noteIndex = this.notes.indexOf(note);
-    let selectedNote = this.notes[noteIndex];
-    selectedNote.isEditable = !selectedNote.isEditable;
-    
-  }
-
 
 }
 
