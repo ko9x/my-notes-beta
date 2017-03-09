@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FirebaseListObservable } from 'angularfire2';
 
 import { NoteService } from '../service/note.service';
 import { Note } from '../note';
@@ -10,7 +11,7 @@ import { Note } from '../note';
 })
 export class GitNotesComponent implements OnInit {
 
-  notes: Note[] = []
+  notes: FirebaseListObservable<Note[]>
 
   constructor(private noteService: NoteService) { }
 
@@ -18,20 +19,24 @@ export class GitNotesComponent implements OnInit {
    this.getNotes()
   }
 
-
-
   getNotes() {
-    this.noteService.fetchNote()
-      .subscribe(
-        data => {
-          const myArray = []
-          for (let key in data) {
-            myArray.push(data[key])
-          }
-          this.notes = myArray;
-        }
-      )
+    this.notes = this.noteService.getNotes()
   }
+
+
+
+  // getNotes() {
+  //   this.noteService.fetchNote()
+  //     .subscribe(
+  //       data => {
+  //         const myArray = []
+  //         for (let key in data) {
+  //           myArray.push(data[key])
+  //         }
+  //         this.notes = myArray;
+  //       }
+  //     )
+  // }
 
   onCanEdit(note: Note) {
     note.isEditable = !note.isEditable;

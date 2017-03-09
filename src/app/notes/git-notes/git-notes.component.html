@@ -6,7 +6,7 @@
   <div id="1">
     <h2 class="section-header">MISC GIT NOTES</h2>
     <hr>
-    <div *ngFor="let note of notes; let i = index">
+    <div *ngFor="let note of notes | async; let i = index">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'misc'"></app-git-note-item>
     </div>
   </div>
@@ -14,7 +14,7 @@
   <div id="2">
     <h2 class="section-header">GENERAL COMMANDS</h2>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'general'"></app-git-note-item>
     </div>
   </div>
@@ -22,7 +22,7 @@
   <div id="3">
     <h2 class="section-header">COMMIT COMMANDS</h2>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'commit'"></app-git-note-item>
     </div>
   </div>
@@ -30,7 +30,7 @@
   <div id="4">
     <h2 class="section-header">LOG COMMANDS</h2>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'log'"></app-git-note-item>
     </div>
   </div>
@@ -38,7 +38,7 @@
   <div id="5">
     <h2 class="section-header">DIFF COMMANDS SECTION</h2>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'diff'"></app-git-note-item>
     </div>
   </div>
@@ -46,7 +46,7 @@
   <div id="6">
     <h1 class="section-header">BRANCH SECTION</h1>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'branch'"></app-git-note-item>
     </div>
   </div>
@@ -54,14 +54,14 @@
   <div id="7">
     <h2 class="section-header">MERGING COMMANDS</h2>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'merge'"></app-git-note-item>
     </div>
   </div>
   <div id="8">
     <h2 class="section-header">TAG COMMANDS</h2>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'tag'"></app-git-note-item>
     </div>
   </div>
@@ -69,14 +69,14 @@
   <div id="9">
     <h2 class="section-header">STASH COMMANDS</h2>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'stash'"></app-git-note-item>
     </div>
   </div>
   <div id="10">
     <h2 class="section-header">TIME-TRAVEL/RESET COMMANDS</h2>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'time-travel'"></app-git-note-item>
     </div>
   </div>
@@ -84,14 +84,14 @@
   <div id="11">
     <h1 class="section-header">REMOTE GIT COMMANDS SECTION</h1>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'remote'"></app-git-note-item>
     </div>
   </div>
   <div id="12">
     <h1 class="section-header">CLONING NOTES</h1>
     <hr>
-    <div *ngFor="let note of notes">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'cloning'"></app-git-note-item>
     </div>
   </div>

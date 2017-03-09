@@ -26,7 +26,6 @@ export class GitNoteAddComponent implements OnInit {
     'time-travel',
     'remote',
     'cloning'
-    
   ]
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private route: ActivatedRoute, private router: Router) { }
@@ -44,10 +43,10 @@ export class GitNoteAddComponent implements OnInit {
 
   onSubmit() {
     this.noteService.storeNote(this.gitNoteForm.value)
-      .subscribe(
-      data => console.log(data),
-      error => console.log(error)
-      )
+      // .subscribe(
+      // data => console.log(data),
+      // error => console.log(error)
+      // )
     this.navigateBack();
   }
 
