@@ -6,7 +6,7 @@
   <div id="1">
     <h2 class="section-header">MISC GIT NOTES</h2>
     <hr>
-    <div *ngFor="let note of notes | async; let i = index">
+    <div *ngFor="let note of notes | async">
       <app-git-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'misc'"></app-git-note-item>
     </div>
   </div>
