@@ -24,8 +24,7 @@
         <label for="important">Optional Important Note</label>
         <textarea formControlName="important" type="text" id="important" class="form-control"></textarea>
       </div>
-      <button type="submit" [disabled]="!gitNoteForm.valid" class="btn btn-primary">Add Note</button>
+      <button type="submit" [disabled]="!gitNoteForm.valid" class="btn btn-success">Save</button>
     </form>
-    <button (click)="initializeForm()">Click to see fields</button>
   </div>
 </div>

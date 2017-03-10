@@ -7,8 +7,6 @@ import 'rxjs/Rx';
 @Injectable()
 export class NoteService {
 
-  notes: Note[] = []
-
   constructor(private http: Http, private angularFire: AngularFire) { }
 
   getNotes() {
@@ -23,21 +21,9 @@ export class NoteService {
     return this.angularFire.database.object('/notes/' + id)
   }
 
-  // storeNote(note: Note) {
-  //   const body = JSON.stringify(note);
-  //   const headers = new Headers({
-  //     'Content-Type': 'application/json'
-  //   });
-  //   return this.http.post('https://my-notes-64d6a.firebaseio.com/notes.json', body, { headers: headers });
-  // }
-
-  // fetchNote() {
-  //   return this.http.get("https://my-notes-64d6a.firebaseio.com/notes.json")
-  //     .map((response: Response) => response.json());
-  // }
-
-
-
+  updateNote(note: Note) {
+    this.angularFire.database.object('/notes/' + note.id).update(note)
+  }
 
 }
 

@@ -43,10 +43,6 @@ export class GitNoteAddComponent implements OnInit {
 
   onSubmit() {
     this.noteService.storeNote(this.gitNoteForm.value)
-      // .subscribe(
-      // data => console.log(data),
-      // error => console.log(error)
-      // )
     this.navigateBack();
   }
 

@@ -12,7 +12,6 @@ import { Note } from '../../note';
 })
 export class GitNoteEditComponent implements OnInit, OnDestroy {
 
-  private n;
   private currentNote;
   private noteId
   private subscription;
@@ -49,14 +48,8 @@ export class GitNoteEditComponent implements OnInit, OnDestroy {
       
     )
     this.initializeForm();
-    setTimeout(() => { this.initializeForm(); }, 500);
+    setTimeout(() => { this.initializeForm(); }, 200);
     
-  }
-
-  
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   initializeForm() {
@@ -84,5 +77,18 @@ export class GitNoteEditComponent implements OnInit, OnDestroy {
       important: [noteImportant],
       isEditable: noteIsEditable
     })
+  }
+
+  onSubmit() {
+    this.noteService.updateNote(this.gitNoteForm.value);
+    this.navigateBack();
+  }
+
+  navigateBack() {
+    this.router.navigate(['/git-notes']);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
