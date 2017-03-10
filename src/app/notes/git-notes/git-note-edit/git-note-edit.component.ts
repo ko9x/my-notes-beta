@@ -81,6 +81,10 @@ export class GitNoteEditComponent implements OnInit, OnDestroy {
     this.navigateBack();
   }
 
+  onCancel() {
+    this.navigateBack();
+  }
+
   navigateBack() {
     this.router.navigate(['/git-notes']);
   }
