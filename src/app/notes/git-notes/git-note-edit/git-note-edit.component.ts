@@ -41,15 +41,11 @@ export class GitNoteEditComponent implements OnInit, OnDestroy {
         this.noteService.getNote(this.noteId)
         .subscribe(
           note => this.currentNote = note
-          
         )
-        
       }
-      
     )
     this.initializeForm();
-    setTimeout(() => { this.initializeForm(); }, 200);
-    
+    setTimeout(() => { this.initializeForm(); }, 200); 
   }
 
   initializeForm() {
