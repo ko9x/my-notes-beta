@@ -23,25 +23,8 @@ export class GitNotesComponent implements OnInit {
     this.notes = this.noteService.getNotes()
   }
 
-
-
-  // getNotes() {
-  //   this.noteService.fetchNote()
-  //     .subscribe(
-  //       data => {
-  //         const myArray = []
-  //         for (let key in data) {
-  //           myArray.push(data[key])
-  //         }
-  //         this.notes = myArray;
-  //       }
-  //     )
-  // }
-
   onCanEdit(note: Note) {
     note.isEditable = !note.isEditable;
   }
-
-
 
 }

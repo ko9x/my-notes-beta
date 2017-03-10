@@ -80,7 +80,8 @@ export class GitNoteEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.noteService.updateNote(this.gitNoteForm.value);
+    console.log(this.gitNoteForm.value)
+    this.noteService.updateNote(this.gitNoteForm.value, this.noteId);
     this.navigateBack();
   }
 

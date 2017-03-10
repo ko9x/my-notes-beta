@@ -23,7 +23,11 @@ export class GitNoteItemComponent implements OnInit {
 
 
   onEdit(id: string) {
-    this.router.navigate(['/notes/git-notes/' + id + '/edit'])
+    this.router.navigate(['/notes/git-notes/' + id + '/edit']);
+  }
+
+  onDelete(id: string) {
+    this.noteService.removeNote(id);
   }
 
 }

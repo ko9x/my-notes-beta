@@ -12,6 +12,6 @@
   </div>
   <div *ngIf="note.isEditable">
     <button class="btn btn-info btn-xs" (click)="onEdit(note.$key)">Edit</button>
-    <button class="btn btn-danger btn-xs" (click)="onDelete(note)">Delete</button>
+    <button class="btn btn-danger btn-xs" (click)="onDelete(note.$key)">Delete</button>
   </div>
 </div>
