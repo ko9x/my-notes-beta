@@ -7,7 +7,7 @@
     <div id="1" >
       <h2 class="section-header" (click)="toAdd('misc')">MISC GIT NOTES</h2>
       <hr>
-      <div *ngFor="let note of notes | async | keys">
+      <div *ngFor="let note of notes | async">
         <app-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'misc'"></app-note-item>
       </div>
     </div>
