@@ -13,6 +13,7 @@ export class NoteAddComponent implements OnInit {
 
   private subscription;
   private noteSection: string = "";
+  private notePage: string = "";
   noteForm: FormGroup;
   sections = [
     'misc',
@@ -34,12 +35,17 @@ export class NoteAddComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.route.params.subscribe(
       (params: any) => {
-        if (params.hasOwnProperty('id')) {
-          this.noteSection = params['id']
+        if (params.hasOwnProperty('id1')) {
+          this.notePage = params['id1']
+        }
+        if (params.hasOwnProperty('id2')) {
+          this.noteSection = params['id2']
         }
       }
     )
     this.initForm();
+    console.log(this.notePage)
+    console.log(this.noteSection)
   }
 
   initForm() {

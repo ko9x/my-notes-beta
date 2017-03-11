@@ -25,7 +25,7 @@ export class AngularFireNotesListComponent implements OnInit {
   }
 
   toAdd(sectionName) {
-    this.router.navigate(['notes/git-notes/new/' + sectionName])
+    this.router.navigate(['notes/angular-fire-notes/angular-fire/new/' + sectionName])
   }
 
   onCanEdit(note: Note) {

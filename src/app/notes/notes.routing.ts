@@ -10,10 +10,10 @@ const NOTES_ROUTES: Routes = [
     
             { path: 'angular-fire-notes', component: AngularFireNotesListComponent},
             { path: 'git-notes', component: GitNotesListComponent },
-            { path: 'angular-fire-notes/new', component: NoteAddComponent},
-            { path: 'git-notes/new', component: NoteAddComponent },
-            { path: 'anguler-fire-notes/new/:id', component: NoteAddComponent},
-            { path: 'git-notes/new/:id', component: NoteAddComponent },
+            { path: 'angular-fire-notes/:id1/new', component: NoteAddComponent},
+            { path: 'git-notes/:id1/new', component: NoteAddComponent },
+            { path: 'angular-fire-notes/:id1/new/:id2', component: NoteAddComponent},
+            { path: 'git-notes/:id1/new/:id2', component: NoteAddComponent },
             { path: 'angular-fire-notes/:id/edit', component: NoteEditComponent},
             { path: 'git-notes/:id/edit', component: NoteEditComponent }
         
