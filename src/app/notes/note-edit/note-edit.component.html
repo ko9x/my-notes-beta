@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="gitNoteForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
     <h3 id="section-title">Choose a section for your Git/GithHub note</h3>
     <div class="radio" *ngFor="let section of sections">
       <label>
@@ -23,7 +23,7 @@
       <label for="important">Optional Important Note</label>
       <textarea formControlName="important" type="text" id="important" class="form-control"></textarea>
     </div>
-    <button type="submit" [disabled]="!gitNoteForm.valid" class="btn btn-success">Save</button>
+    <button type="submit" [disabled]="!noteForm.valid" class="btn btn-success">Save</button>
     <button (click)="onCancel()" class="btn">Cancel</button>
   </form>
 </div>

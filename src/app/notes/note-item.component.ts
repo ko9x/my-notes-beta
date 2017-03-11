@@ -1,15 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Note } from '../note';
-import { NoteService } from '../service/note.service';
+import { Note } from './note';
+import { NoteService } from './service/note.service';
 
 @Component({
-  selector: 'app-git-note-item',
-  templateUrl: './git-note-item.component.html',
-  styleUrls: ['./git-note-item.component.css']
+  selector: 'app-note-item',
+  templateUrl: './note-item.component.html',
+  styleUrls: ['./note-item.component.css']
 })
-export class GitNoteItemComponent {
+export class NoteItemComponent {
 
   @Input() note: Note
   @Input() noteId: number

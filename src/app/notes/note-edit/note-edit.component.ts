@@ -2,20 +2,20 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { NoteService } from '../../service/note.service';
-import { Note } from '../../note';
+import { NoteService } from '../service/note.service';
+import { Note } from '../note';
 
 @Component({
-  selector: 'app-git-note-edit',
-  templateUrl: './git-note-edit.component.html',
-  styleUrls: ['./git-note-edit.component.css']
+  selector: 'git-note-edit',
+  templateUrl: './note-edit.component.html',
+  styleUrls: ['./note-edit.component.css']
 })
-export class GitNoteEditComponent implements OnInit, OnDestroy {
+export class NoteEditComponent implements OnInit, OnDestroy {
 
   private currentNote;
   private noteId
   private subscription;
-  private gitNoteForm: FormGroup;
+  private noteForm: FormGroup;
   private sections = [
     'misc',
     'general',
@@ -65,7 +65,7 @@ export class GitNoteEditComponent implements OnInit, OnDestroy {
       noteIsEditable = this.currentNote.isEditable
     }
       
-    this.gitNoteForm = this.formBuilder.group({
+    this.noteForm = this.formBuilder.group({
       section: [noteSection, Validators.required],
       title: [noteTitle, Validators.required],
       content: [noteContent, Validators.required],
@@ -76,8 +76,7 @@ export class GitNoteEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.gitNoteForm.value)
-    this.noteService.updateNote(this.gitNoteForm.value, this.noteId);
+    this.noteService.updateNote(this.noteForm.value, this.noteId);
     this.navigateBack();
   }
 

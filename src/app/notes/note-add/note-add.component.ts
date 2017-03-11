@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { NoteService } from '../../service/note.service';
+import { NoteService } from '../service/note.service';
 
 @Component({
-  selector: 'app-git-note-add',
-  templateUrl: './git-note-add.component.html',
-  styleUrls: ['./git-note-add.component.css']
+  selector: 'app-note-add',
+  templateUrl: './note-add.component.html',
+  styleUrls: ['./note-add.component.css']
 })
-export class GitNoteAddComponent implements OnInit {
+export class NoteAddComponent implements OnInit {
 
   private subscription;
   private noteSection: string = "";
-  gitNoteForm: FormGroup;
+  noteForm: FormGroup;
   sections = [
     'misc',
     'general',
@@ -43,7 +43,7 @@ export class GitNoteAddComponent implements OnInit {
   }
 
   initForm() {
-    this.gitNoteForm = this.formBuilder.group({
+    this.noteForm = this.formBuilder.group({
       section: [this.noteSection, Validators.required],
       title: ['', Validators.required],
       content: ['', Validators.required],
@@ -54,7 +54,7 @@ export class GitNoteAddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.noteService.storeNote(this.gitNoteForm.value)
+    this.noteService.storeNote(this.noteForm.value)
     this.navigateBack();
   }
 
