@@ -7,7 +7,6 @@ import 'rxjs/Rx';
 @Injectable()
 export class NoteService {
 
-
   constructor(private http: Http, private angularFire: AngularFire) { 
   }
 

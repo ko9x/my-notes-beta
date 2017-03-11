@@ -11,6 +11,7 @@ import { NoteAddComponent } from './note-add/note-add.component';
 import { NoteService } from './service/note.service';
 import { notesRouting } from './notes.routing';
 import { NoteItemComponent } from './note-item.component';
+import { KeysPipe } from './pipes/keys.pipe';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBJUm2Qdj_jwCfgKKc1ImgaGzPzxmumtw4",
@@ -20,6 +21,16 @@ export const firebaseConfig = {
   messagingSenderId: "921992896364"
 }
 
+// EXPERIMENTAL DATABASE CONFIG
+
+// export const firebaseConfig = {
+//   apiKey: "AIzaSyDB_swZVnTlvXHxVqpESfq0R3D5SeizvuU",
+//   authDomain: "test-notes-d325b.firebaseapp.com",
+//   databaseURL: "https://test-notes-d325b.firebaseio.com",
+//   storageBucket: "test-notes-d325b.appspot.com",
+//   messagingSenderId: "313019058433"
+// }
+
 @NgModule({
   imports: [
     CommonModule,
@@ -28,7 +39,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     notesRouting
   ],
-  declarations: [NotesComponent, NoteEditComponent, NoteAddComponent, NoteItemComponent],
+  declarations: [NotesComponent, NoteEditComponent, NoteAddComponent, NoteItemComponent, KeysPipe],
   providers: [NoteService]
 })
 export class NotesModule { }
