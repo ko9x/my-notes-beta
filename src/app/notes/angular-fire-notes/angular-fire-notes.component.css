@@ -1,0 +1,19 @@
+body {
+    padding-top: 70px;
+}
+
+.page-header {
+    color: #28a745;
+}
+
+.important {
+    color: red;
+}
+
+.side {
+    color: orange;
+}
+
+.section-header {
+    padding-top: 70px;
+}
