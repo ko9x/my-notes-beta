@@ -11,8 +11,9 @@ import { NoteService } from '../../service/note.service';
 })
 export class GitNoteAddComponent implements OnInit {
 
+  private subscription;
+  private noteSection: string = "";
   gitNoteForm: FormGroup;
-  notes = [];
   sections = [
     'misc',
     'general',
@@ -31,8 +32,19 @@ export class GitNoteAddComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.subscription = this.route.params.subscribe(
+      (params: any) => {
+        if (params.hasOwnProperty('id')) {
+          this.noteSection = params['id']
+        }
+      }
+    )
+    this.initForm();
+  }
+
+  initForm() {
     this.gitNoteForm = this.formBuilder.group({
-      section: ['', Validators.required],
+      section: [this.noteSection, Validators.required],
       title: ['', Validators.required],
       content: ['', Validators.required],
       side: [''],
@@ -46,10 +58,12 @@ export class GitNoteAddComponent implements OnInit {
     this.navigateBack();
   }
 
+  onCancel() {
+    this.navigateBack();
+  }
+
   navigateBack() {
     this.router.navigate(['/git-notes']);
   }
-
-
 
 }

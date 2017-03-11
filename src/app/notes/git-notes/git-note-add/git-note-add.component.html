@@ -24,6 +24,7 @@
       <textarea formControlName="important" type="text" id="important" class="form-control"></textarea>
     </div>
     <button type="submit" [disabled]="!gitNoteForm.valid" class="btn btn-primary">Add Note</button>
+    <button class="btn" (click)="onCancel()">Cancel</button>
   </form>
 </div>
 

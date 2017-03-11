@@ -10,6 +10,7 @@ const NOTES_ROUTES: Routes = [
         
             { path: 'git-notes', component: GitNotesComponent },
             { path: 'git-notes/new', component: GitNoteAddComponent },
+            { path: 'git-notes/new/:id', component: GitNoteAddComponent },
             { path: 'git-notes/:id/edit', component: GitNoteEditComponent }
         
     
