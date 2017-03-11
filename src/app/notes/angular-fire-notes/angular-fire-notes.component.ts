@@ -6,12 +6,12 @@ import { NoteService } from '../service/note.service';
 import { Note } from '../note';
 
 @Component({
-  selector: 'app-git-notes',
-  templateUrl: './git-notes.component.html',
-  styleUrls: ['./git-notes.component.css'],
+  selector: 'app-angular-fire-notes',
+  templateUrl: './angular-fire-notes.component.html',
+  styleUrls: ['./angular-fire-notes.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class GitNotesComponent implements OnInit {
+export class AngularFireNotesComponent implements OnInit {
 
   notes: FirebaseListObservable<Note[]>
 
