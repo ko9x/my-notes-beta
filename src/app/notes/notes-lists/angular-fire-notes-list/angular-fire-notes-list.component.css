@@ -1,0 +1,24 @@
+body {
+    padding-top: 70px;
+}
+
+.page-header {
+    color: #cb3837;
+}
+
+#af-add-btn {
+    color: white;
+    background-color: #cb3837;
+}
+
+.important {
+    color: red;
+}
+
+.side {
+    color: orange;
+}
+
+.section-header {
+    padding-top: 70px;
+}

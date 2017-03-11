@@ -4,15 +4,14 @@
     <button class="btn btn-success" routerLink="/notes/git-notes/new">Add A Note</button>
   </div>
   <div >
-    <div id="1" >
-      <h2 class="section-header" (click)="toAdd('misc')">MISC GIT NOTES</h2>
+    <div id="1">
+      <h2 class="section-header" (click)="toAdd('misc')" >MISC COMMANDS</h2>
       <hr>
       <div *ngFor="let note of notes | async">
         <app-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'misc'"></app-note-item>
       </div>
-      
     </div>
-    <!--<hr>
+    <hr>
     <div id="2">
     <h2 class="section-header" (click)="toAdd('general')">GENERAL COMMANDS</h2>
     <hr>
@@ -97,6 +96,6 @@
       <app-note-item [note]="note" (click)="onCanEdit(note)" *ngIf="note.section === 'cloning'"></app-note-item>
     </div>
   </div>
-  <br><br><br><br><br><br>-->
+  <br><br><br><br><br><br>
   </div>
 </div>

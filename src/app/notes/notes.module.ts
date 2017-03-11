@@ -5,13 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 
 
-import { NotesComponent } from './notes.component';
+import { GitNotesListComponent } from './notes-lists/git-notes-list/git-notes-list.component';
 import { NoteEditComponent } from './note-edit/note-edit.component';
 import { NoteAddComponent } from './note-add/note-add.component';
 import { NoteService } from './service/note.service';
 import { notesRouting } from './notes.routing';
 import { NoteItemComponent } from './note-item.component';
 import { KeysPipe } from './pipes/keys.pipe';
+import { AngularFireNotesListComponent } from './notes-lists/angular-fire-notes-list/angular-fire-notes-list.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBJUm2Qdj_jwCfgKKc1ImgaGzPzxmumtw4",
@@ -39,7 +40,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     notesRouting
   ],
-  declarations: [NotesComponent, NoteEditComponent, NoteAddComponent, NoteItemComponent, KeysPipe],
+  declarations: [GitNotesListComponent, NoteEditComponent, NoteAddComponent, NoteItemComponent, KeysPipe, AngularFireNotesListComponent],
   providers: [NoteService]
 })
 export class NotesModule { }
