@@ -14,15 +14,32 @@ import { Note } from './note';
 export class NotesComponent implements OnInit {
 
   notes: FirebaseListObservable<Note[]>
+  sectionArray = [];
+  gitPageArray = []
+  filteredNames = [];
 
   constructor(private noteService: NoteService, private router: Router) { }
 
   ngOnInit() {
-   this.getNotes()
+    this.getNotes()
+    console.log(this.sectionArray)
   }
 
   getNotes() {
+    let array1 = []
+    let array2 = []
     this.notes = this.noteService.getNotes()
+    this.notes.forEach(element => {
+      array1.push(element)
+      array1.forEach(note => {
+        note.forEach(item => {
+          if (this.sectionArray.indexOf(item.section) == -1) {
+            this.sectionArray.push(item.section);
+          }
+          this.sectionArray.slice((this.sectionArray.length - 1), (this.sectionArray.length))
+        });
+      });
+    });
   }
 
   toAdd(sectionName) {
