@@ -36,19 +36,19 @@ export class NoteService {
   }
 
   getSections(name: string) {
-    if(name === 'git') {
+    if (name === 'git') {
       return this.gitSections;
     }
-    if(name === 'angular-fire') {
+    if (name === 'angular-fire') {
       return this.angularFireSections;
     }
   }
 
   getHeaderTitle(name: string) {
-    if(name === 'git') {
+    if (name === 'git') {
       return this.gitHeaderTitle;
     }
-    if(name === 'angular-fire') {
+    if (name === 'angular-fire') {
       return this.angularFireHeaderTitle
     }
   }
