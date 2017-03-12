@@ -18,11 +18,10 @@ export class NoteItemComponent implements OnInit {
   constructor(private noteService: NoteService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.page)
   }
 
   onEdit(id: string) {
-    this.router.navigate(['/notes/' + this.page + '-notes/' + id + '/edit']);
+    this.router.navigate(['/notes/' + this.page + '-notes/' + this.page + '/' + id + '/edit']);
   }
 
   onDelete(id: string) {

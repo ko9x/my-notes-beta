@@ -16,20 +16,15 @@ export class NoteEditComponent implements OnInit, OnDestroy {
   private noteId
   private subscription;
   private noteForm: FormGroup;
-  private sections = [
-    'misc',
-    'general',
-    'commit',
-    'log',
-    'diff',
-    'branch',
-    'merge',
-    'tag',
-    'stash',
-    'time-travel',
-    'remote',
-    'cloning'
-  ];
+  private notePage: string = "";
+  private sections: string[] = [];
+  private headerTitle: string = "";
+
+  private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning']
+  private angularFireSections = ['misc', 'methods']
+
+  private gitHeaderTitle = 'Git/Github';
+  private angularFireHeaderTitle = 'AngularFire2/Firebase';
 
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private route: ActivatedRoute, private router: Router) { }
@@ -37,18 +32,32 @@ export class NoteEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.route.params.subscribe(
       (params: any) => {
-        this.noteId = params['id'];
-        this.noteService.getNote(this.noteId)
-        .subscribe(
-          note => this.currentNote = note
-        )
+        if (params.hasOwnProperty('id1')) {
+          this.notePage = params['id1']
+        }
+        if (params.hasOwnProperty('id2')) {
+          this.noteId = params['id2']
+          this.noteService.getNote(this.noteId)
+            .subscribe(
+            note => this.currentNote = note
+            )
+        }
+        if (this.notePage === 'git') {
+          this.sections = this.gitSections;
+          this.headerTitle = this.gitHeaderTitle;
+        }
+        if (this.notePage === 'angular-fire') {
+          this.sections = this.angularFireSections;
+          this.headerTitle = this.angularFireHeaderTitle;
+        }
       }
     )
-    this.initializeForm();
-    setTimeout(() => { this.initializeForm(); }, 200); 
+    this.initForm();
+    setTimeout(() => { this.initForm(); }, 150);
+
   }
 
-  initializeForm() {
+  initForm() {
     let noteSection = '';
     let noteTitle = '';
     let noteContent = '';
@@ -56,7 +65,7 @@ export class NoteEditComponent implements OnInit, OnDestroy {
     let noteImportant = '';
     let noteIsEditable = false
 
-    if(this.currentNote != null) {
+    if (this.currentNote != null) {
       noteSection = this.currentNote.section
       noteTitle = this.currentNote.title
       noteContent = this.currentNote.content
@@ -64,7 +73,7 @@ export class NoteEditComponent implements OnInit, OnDestroy {
       noteImportant = this.currentNote.important
       noteIsEditable = this.currentNote.isEditable
     }
-      
+
     this.noteForm = this.formBuilder.group({
       section: [noteSection, Validators.required],
       title: [noteTitle, Validators.required],
@@ -85,7 +94,7 @@ export class NoteEditComponent implements OnInit, OnDestroy {
   }
 
   navigateBack() {
-    this.router.navigate(['/git-notes']);
+    this.router.navigate(['/' + this.notePage + '-notes']);
   }
 
   ngOnDestroy() {

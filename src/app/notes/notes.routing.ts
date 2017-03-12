@@ -14,8 +14,8 @@ const NOTES_ROUTES: Routes = [
             { path: 'git-notes/:id1/new', component: NoteAddComponent },
             { path: 'angular-fire-notes/:id1/new/:id2', component: NoteAddComponent},
             { path: 'git-notes/:id1/new/:id2', component: NoteAddComponent },
-            { path: 'angular-fire-notes/:id/edit', component: NoteEditComponent},
-            { path: 'git-notes/:id/edit', component: NoteEditComponent }
+            { path: 'angular-fire-notes/:id1/:id2/edit', component: NoteEditComponent},
+            { path: 'git-notes/:id1/:id2/edit', component: NoteEditComponent }
         
     
 ] 
