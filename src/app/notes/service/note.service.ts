@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Note } from '../note';
 import { Http, Headers, Response } from '@angular/http';
 import { AngularFire } from 'angularfire2';
-import 'rxjs/Rx';
 
 @Injectable()
 export class NoteService {
 
-  constructor(private http: Http, private angularFire: AngularFire) { 
+  constructor(private http: Http, private angularFire: AngularFire) {
   }
 
   getNotes() {

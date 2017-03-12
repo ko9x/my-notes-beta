@@ -26,7 +26,7 @@ export class GitNotesListComponent implements OnInit {
   }
 
   toAdd(sectionName) {
-    this.router.navigate(['notes/git-notes/new/' + sectionName])
+    this.router.navigate(['notes/git-notes/git/new/' + sectionName])
   }
 
   onCanEdit(note: Note) {

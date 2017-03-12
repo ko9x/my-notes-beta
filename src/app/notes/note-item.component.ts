@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Note } from './note';
 import { NoteService } from './service/note.service';
@@ -9,15 +9,20 @@ import { NoteService } from './service/note.service';
   templateUrl: './note-item.component.html',
   styleUrls: ['./note-item.component.css']
 })
-export class NoteItemComponent {
+export class NoteItemComponent implements OnInit {
 
+  @Input() page: string
   @Input() note: Note
-  @Input() noteId: number
+  private subscription;
 
-  constructor(private noteService: NoteService, private router: Router) { }
+  constructor(private noteService: NoteService, private router: Router, private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    console.log(this.page)
+  }
 
   onEdit(id: string) {
-    this.router.navigate(['/notes/git-notes/' + id + '/edit']);
+    this.router.navigate(['/notes/' + this.page + '-notes/' + id + '/edit']);
   }
 
   onDelete(id: string) {
