@@ -18,12 +18,6 @@ export class NoteAddComponent implements OnInit, OnDestroy {
   private sections: string[] = [];
   private headerTitle: string = "";
 
-  private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning']
-  private angularFireSections = ['misc', 'methods']
-
-  private gitHeaderTitle = 'Git/Github';
-  private angularFireHeaderTitle = 'AngularFire2/Firebase';
-
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -35,16 +29,10 @@ export class NoteAddComponent implements OnInit, OnDestroy {
         if (params.hasOwnProperty('id2')) {
           this.noteSection = params['id2']
         }
-        if(this.notePage === 'git') {
-          this.sections = this.gitSections;
-          this.headerTitle = this.gitHeaderTitle;
-        }
-        if(this.notePage === 'angular-fire') {
-          this.sections = this.angularFireSections;
-          this.headerTitle = this.angularFireHeaderTitle;
-        }
       }
     )
+    this.getSections();
+    this.getHeaderTitle();
     this.initForm();
   }
 
@@ -64,6 +52,14 @@ export class NoteAddComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.noteService.storeNote(this.noteForm.value)
     this.navigateBack();
+  }
+
+  getSections() {
+    this.sections = this.noteService.getSections(this.notePage);
+  }
+
+  getHeaderTitle() {
+    this.headerTitle = this.noteService.getHeaderTitle(this.notePage);
   }
 
   onCancel() {

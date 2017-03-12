@@ -1,6 +1,6 @@
 <div class="container">
   <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
-    <h3 id="section-title">Choose a section for your Git/GithHub note</h3>
+    <h3 id="section-title">Choose a section for your {{headerTitle}} note</h3>
     <div class="radio" *ngFor="let section of sections">
       <label>
             <input type="radio" formControlName="section" [value]="section"><p>{{section}}</p>

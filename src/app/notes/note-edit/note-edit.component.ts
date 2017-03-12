@@ -20,13 +20,6 @@ export class NoteEditComponent implements OnInit, OnDestroy {
   private sections: string[] = [];
   private headerTitle: string = "";
 
-  private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning']
-  private angularFireSections = ['misc', 'methods']
-
-  private gitHeaderTitle = 'Git/Github';
-  private angularFireHeaderTitle = 'AngularFire2/Firebase';
-
-
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -42,16 +35,10 @@ export class NoteEditComponent implements OnInit, OnDestroy {
             note => this.currentNote = note
             )
         }
-        if (this.notePage === 'git') {
-          this.sections = this.gitSections;
-          this.headerTitle = this.gitHeaderTitle;
-        }
-        if (this.notePage === 'angular-fire') {
-          this.sections = this.angularFireSections;
-          this.headerTitle = this.angularFireHeaderTitle;
-        }
       }
     )
+    this.getHeaderTitle()
+    this.getSections()
     this.initForm();
     setTimeout(() => { this.initForm(); }, 150);
 
@@ -79,14 +66,21 @@ export class NoteEditComponent implements OnInit, OnDestroy {
       title: [noteTitle, Validators.required],
       content: [noteContent, Validators.required],
       side: [noteSide],
-      important: [noteImportant],
-      isEditable: noteIsEditable
+      important: [noteImportant]
     })
   }
 
   onSubmit() {
     this.noteService.updateNote(this.noteForm.value, this.noteId);
     this.navigateBack();
+  }
+
+  getHeaderTitle() {
+    this.headerTitle = this.noteService.getHeaderTitle(this.notePage)
+  }
+
+  getSections() {
+    this.sections = this.noteService.getSections(this.notePage)
   }
 
   onCancel() {

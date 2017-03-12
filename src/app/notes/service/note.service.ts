@@ -6,6 +6,12 @@ import { AngularFire } from 'angularfire2';
 @Injectable()
 export class NoteService {
 
+  private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning']
+  private angularFireSections = ['misc', 'methods']
+
+  private gitHeaderTitle = 'Git/Github';
+  private angularFireHeaderTitle = 'AngularFire2/Firebase';
+
   constructor(private http: Http, private angularFire: AngularFire) {
   }
 
@@ -27,6 +33,24 @@ export class NoteService {
 
   removeNote(id: string) {
     this.angularFire.database.object('/notes/' + id).remove();
+  }
+
+  getSections(name: string) {
+    if(name === 'git') {
+      return this.gitSections;
+    }
+    if(name === 'angular-fire') {
+      return this.angularFireSections;
+    }
+  }
+
+  getHeaderTitle(name: string) {
+    if(name === 'git') {
+      return this.gitHeaderTitle;
+    }
+    if(name === 'angular-fire') {
+      return this.angularFireHeaderTitle
+    }
   }
 
 }
