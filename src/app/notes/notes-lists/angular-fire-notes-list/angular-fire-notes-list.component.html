@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="page-header section-header" id="0">
+    <h1>AngularFire and Firebase Notes <small>select a section from the AngularFire Notes dropdown</small></h1>
+    <button class="btn" id="af-add-btn" routerLink="/notes/angular-fire-notes/angular-fire/new">Add A Note</button>
+  </div>
+  <div id="1">
+    <h2 class="section-header" (click)="toAdd('misc')">MISC</h2>
+    <hr>
+    <div *ngFor="let note of notes | async">
+      <app-note-item [note]="note" [page]="note.page" (click)="onCanEdit(note)" *ngIf="note.section === 'misc' && note.page === 'angular-fire'"></app-note-item>
+    </div>
+  </div>
+  <hr>
+  <div id="2">
+    <h2 class="section-header" (click)="toAdd('methods')">METHODS</h2>
+    <hr>
+    <div *ngFor="let note of notes | async">
+      <app-note-item [note]="note" [page]="note.page" (click)="onCanEdit(note)" *ngIf="note.section === 'methods' && note.page === 'angular-fire'"></app-note-item>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+</div>

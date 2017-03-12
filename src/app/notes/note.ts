@@ -2,6 +2,7 @@ export class Note {
     constructor 
     (
         public id: string,
+        public page: string,
         public section: string,
         public title: string,
         public content: string,
