@@ -32,7 +32,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
         this.getHeaderTitle();
       }
     );
-    console.log(this.currentPageSections)
+    console.log(this.sectionNotes)
   }
 
   getCurrentPageNotes() {
@@ -55,7 +55,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
           if (this.currentPageSections.indexOf(note.section) == -1) {
             this.currentPageSections.push(note.section);
           }
-          this.currentPageSections.slice((this.currentPageSections.length - 1), this.currentPageSections.length)
+          return this.currentPageSections.slice((this.currentPageSections.length - 1), this.currentPageSections.length)
         }
       })
     })
