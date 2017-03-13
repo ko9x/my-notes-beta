@@ -6,8 +6,8 @@ import { AngularFire } from 'angularfire2';
 @Injectable()
 export class NoteService {
 
-  private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning']
-  private angularFireSections = ['misc', 'methods']
+  private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning'];
+  private angularFireSections = ['misc', 'methods'];
 
   private gitHeaderTitle = 'Git/Github';
   private angularFireHeaderTitle = 'AngularFire2/Firebase';
@@ -35,13 +35,17 @@ export class NoteService {
     this.angularFire.database.object('/notes/' + id).remove();
   }
 
+  // getSections(name: string) {
+  //   if (name === 'git') {
+  //     return this.gitSections;
+  //   }
+  //   if (name === 'angular-fire') {
+  //     return this.angularFireSections;
+  //   }
+  // }
+
   getSections(name: string) {
-    if (name === 'git') {
-      return this.gitSections;
-    }
-    if (name === 'angular-fire') {
-      return this.angularFireSections;
-    }
+    return this[name + 'Sections'];
   }
 
   getHeaderTitle(name: string) {
@@ -49,7 +53,7 @@ export class NoteService {
       return this.gitHeaderTitle;
     }
     if (name === 'angular-fire') {
-      return this.angularFireHeaderTitle
+      return this.angularFireHeaderTitle;
     }
   }
 
