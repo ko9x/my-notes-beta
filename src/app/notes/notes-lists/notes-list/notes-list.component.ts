@@ -62,10 +62,12 @@ export class NotesListComponent implements OnInit, OnDestroy {
     this.notes.forEach(element => {
       array1.push(element)
       element.forEach(note => {
-        if (this.currentPageSections.indexOf(note.section) == -1) {
-          this.currentPageSections.push(note.section);
+        if (note.page === this.notePage) {
+          if (this.currentPageSections.indexOf(note.section) == -1) {
+            this.currentPageSections.push(note.section);
+          }
+          this.currentPageSections.slice((this.currentPageSections.length - 1), this.currentPageSections.length)
         }
-        this.currentPageSections.slice((this.currentPageSections.length - 1), this.currentPageSections.length)
       })
     })
   }
