@@ -5,13 +5,22 @@
   </div>
   <div *ngFor="let note of currentPageNotes; let i = index; let first = first">
     <div id="note.section" *ngIf="note.section === currentPageSections[0]" >
+      <h2 class="section-header" (click)="toAdd(note.section)" *ngIf="first" >{{note.section | uppercase}}</h2>
+      <hr>
+      <div>
+        <app-note-item [note]="note" [page]="note.page" (click)="onCanEdit(note)" ></app-note-item>
+      </div>
+    </div>
+  </div>
+  <!--<div *ngFor="let note of currentPageNotes; let i = index; let first = first">
+    <div id="note.section" *ngIf="note.section === currentPageSections[1]" >
       <h2 class="section-header" (click)="toAdd('misc')" *ngIf="first" >{{note.section | uppercase}}</h2>
       <hr>
       <div>
         <app-note-item [note]="note" [page]="note.page" (click)="onCanEdit(note)"  ></app-note-item>
       </div>
     </div>
-  </div>
+  </div>-->
   <!--<div id="1">
       <h2 class="section-header" (click)="toAdd('misc')" >MISC</h2>
       <hr>

@@ -19,6 +19,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
   private currentPageSections = [];
   private subscription;
   private headerTitle: string;
+  private sectionNotes: Note[] = [];
 
   constructor(private noteService: NoteService, private router: Router, private route: ActivatedRoute) { }
 
