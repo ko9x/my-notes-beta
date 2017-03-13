@@ -3,7 +3,16 @@
     <h1>Git And GitHub Notes <small>select a section from the Git Notes dropdown</small></h1>
     <button class="btn btn-success" routerLink="/notes/git-notes/git/new">Add A Note</button>
   </div>
-    <div id="1">
+  <div *ngFor="let note of notes | async">
+    <div *ngIf="note.page === 'git'" id="">
+      <h2 class="section-header" (click)="toAdd('misc')">{{note.section}}</h2>
+      <hr>
+      <div>
+        <app-note-item [note]="note" [page]="note.page" (click)="onCanEdit(note)" ></app-note-item>
+      </div>
+    </div>
+  </div>
+    <!--<div id="1">
       <h2 class="section-header" (click)="toAdd('misc')" >MISC</h2>
       <hr>
       <div *ngFor="let note of notes | async">
@@ -94,6 +103,6 @@
     <div *ngFor="let note of notes | async">
       <app-note-item [note]="note" [page]="note.page" (click)="onCanEdit(note)" *ngIf="note.section === 'cloning' && note.page === 'git'"></app-note-item>
     </div>
-  </div>
+  </div>-->
   <br><br><br><br><br><br>
 </div>
