@@ -18,6 +18,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
   private currentPageNotes: Note[] = [];
   private currentPageSections = [];
   private subscription;
+  private headerTitle: string;
 
   constructor(private noteService: NoteService, private router: Router, private route: ActivatedRoute) { }
 
@@ -27,12 +28,9 @@ export class NotesListComponent implements OnInit, OnDestroy {
         this.notePage = params['id']
         this.getNotes();
         this.getCurrentPageNotes();
-        this.getCurrentPageSections();
+        this.getHeaderTitle();
       }
     );
-
-    console.log(this.notes)
-    console.log(this.currentPageNotes)
     console.log(this.currentPageSections)
   }
 
@@ -45,16 +43,6 @@ export class NotesListComponent implements OnInit, OnDestroy {
       });
     });
   }
-
-  getCurrentPageSections() {
-    console.log('from getCurrentPageSections', this.currentPageNotes)
-
-  }
-
-  //    if (this.sectionArray.indexOf(item.section) == -1) {
-  //  +            this.sectionArray.push(item.section);
-  //  +          }
-  //  +          this.sectionArray.slice((this.sectionArray.length - 1), 
 
   getNotes() {
     let array1 = [];
@@ -70,6 +58,11 @@ export class NotesListComponent implements OnInit, OnDestroy {
         }
       })
     })
+  }
+
+  getHeaderTitle() {
+    console.log(this.notePage)
+    this.headerTitle = this.noteService.getHeaderTitle(this.notePage);
   }
 
   toAdd(sectionName) {
