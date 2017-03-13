@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { GitNotesListComponent } from './notes-lists/git-notes-list/git-notes-list.component';
+import { NotesListComponent } from './notes-lists/notes-list/notes-list.component';
 import { NoteEditComponent } from './note-edit/note-edit.component';
 import { NoteAddComponent } from './note-add/note-add.component';
 import { NoteService } from './service/note.service';
@@ -19,7 +19,7 @@ import { AngularFireNotesListComponent } from './notes-lists/angular-fire-notes-
     ReactiveFormsModule,
     notesRouting
   ],
-  declarations: [GitNotesListComponent, NoteEditComponent, NoteAddComponent, NoteItemComponent, KeysPipe, AngularFireNotesListComponent],
+  declarations: [NotesListComponent, NoteEditComponent, NoteAddComponent, NoteItemComponent, KeysPipe, AngularFireNotesListComponent],
   providers: [NoteService]
 })
 export class NotesModule { }

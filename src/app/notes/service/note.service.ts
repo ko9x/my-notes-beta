@@ -7,10 +7,10 @@ import { AngularFire } from 'angularfire2';
 export class NoteService {
 
   private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning'];
-  private angularFireSections = ['misc', 'methods'];
+  private angularfireSections = ['misc', 'methods'];
 
   private gitHeaderTitle = 'Git/Github';
-  private angularFireHeaderTitle = 'AngularFire2/Firebase';
+  private angularfireHeaderTitle = 'AngularFire2/Firebase';
 
   constructor(private http: Http, private angularFire: AngularFire) {
   }
@@ -49,13 +49,17 @@ export class NoteService {
   }
 
   getHeaderTitle(name: string) {
-    if (name === 'git') {
-      return this.gitHeaderTitle;
-    }
-    if (name === 'angular-fire') {
-      return this.angularFireHeaderTitle;
-    }
+    return this[name + 'HeaderTitle'];
   }
+
+  // getHeaderTitle(name: string) {
+  //   if (name === 'git') {
+  //     return this.gitHeaderTitle;
+  //   }
+  //   if (name === 'angular-fire') {
+  //     return this.angularFireHeaderTitle;
+  //   }
+  // }
 
 }
 

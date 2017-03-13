@@ -41,7 +41,6 @@ export class NoteEditComponent implements OnInit, OnDestroy {
     this.getSections()
     this.initForm();
     setTimeout(() => { this.initForm(); }, 150);
-
   }
 
   initForm() {
