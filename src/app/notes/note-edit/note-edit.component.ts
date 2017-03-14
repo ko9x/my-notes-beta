@@ -87,7 +87,7 @@ export class NoteEditComponent implements OnInit, OnDestroy {
   }
 
   navigateBack() {
-    this.router.navigate(['/' + this.notePage + '-notes']);
+    this.router.navigate(['/' + this.notePage + '-notes/' + this.notePage]);
   }
 
   ngOnDestroy() {

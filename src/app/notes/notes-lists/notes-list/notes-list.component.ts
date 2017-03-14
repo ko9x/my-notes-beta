@@ -19,7 +19,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
   private currentPageSections = [];
   private subscription;
   private pageHeaderTitle: string;
-  private currentPagesectionTitles: string[] = []
+  private currentPagesectionTitles: string[] = [];
   private sectionArray = [];
 
   constructor(private noteService: NoteService, private router: Router, private route: ActivatedRoute) { }
@@ -34,32 +34,20 @@ export class NotesListComponent implements OnInit, OnDestroy {
       }
     );
     setTimeout(() => {
-      this.currentPageSections.push(this.currentPageNotes.filter(item => {
-        return item.section === 'general'
-      }))
+      for (let i = 0; i < this.sectionArray.length; i++) {
+        this.currentPageSections.push(this.currentPageNotes.filter(item => {
+          return item.section === this.sectionArray[i]
+        }));
+      }
     }, 600);
-    setTimeout(() => {
-      this.currentPageSections.push(this.currentPageNotes.filter(item => {
-        return item.section === 'misc'
-      }))
-    }, 600)
-    setTimeout(() => {
-      this.currentPageSections.push(this.currentPageNotes.filter(item => {
-        return item.section === 'commit'
-      }))
-    }, 600)
-
-
-
-
-    setTimeout(() => { console.log(this.sectionArray); }, 710);
+    setTimeout(() => { console.log(this.currentPageSections); }, 710);
   }
 
   getCurrentPageNotes() {
     this.notes.forEach(element => {
       element.forEach(note => {
         if (note.page === this.notePage) {
-          this.currentPageNotes.push(note)
+          this.currentPageNotes.push(note);
         }
       });
     });
@@ -69,19 +57,18 @@ export class NotesListComponent implements OnInit, OnDestroy {
     let array1 = [];
     this.notes = this.noteService.getNotes();
     this.notes.forEach(element => {
-      array1.push(element)
+      array1.push(element);
       array1.forEach(note => {
         note.forEach(item => {
-          if(item.page === this.notePage) {
-            if(this.sectionArray.indexOf(item.section) == -1) {
-            this.sectionArray.push(item.section);
+          if (item.page === this.notePage) {
+            if (this.sectionArray.indexOf(item.section) == -1) {
+              this.sectionArray.push(item.section);
+            }
+            this.sectionArray.slice((this.sectionArray.length - 1), (this.sectionArray.length));
           }
-          this.sectionArray.slice((this.sectionArray.length -1), (this.sectionArray.length))
-          }
-          
-        })
-      })
-    })
+        });
+      });
+    });
   }
 
   getHeaderTitle() {
