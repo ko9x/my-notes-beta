@@ -3,12 +3,12 @@
     <h1>{{headerTitle}} Notes <small> select a section from the {{notePage}}-notes dropdown</small></h1>
     <button class="btn btn-success" routerLink="/notes/git-notes/git/new">Add A Note</button>
   </div>
-  <div *ngFor="let note of currentPageNotes; let i = index; let first = first">
-    <div id="note.section" *ngIf="note.section === currentPageSections[0]" >
-      <h2 class="section-header" (click)="toAdd(note.section)" *ngIf="first" >{{note.section | uppercase}}</h2>
-      <hr>
-      <div>
-        <app-note-item [note]="note" [page]="note.page" (click)="onCanEdit(note)" ></app-note-item>
+  <div *ngFor="let sectionNote of currentPageSections; let i = index" >
+    <div *ngFor="let sectionNote of currentPageSections[i]; let i = index; let first = first">
+      <div id="{{sectionNote.section}}">
+        <h2  class="section-header" (click)="toAdd()" *ngIf="first">{{sectionNote.section | uppercase}}</h2>
+        <hr>
+          <app-note-item [note]="sectionNote" (click)="onCanEdit(sectionNote)"></app-note-item>
       </div>
     </div>
   </div>

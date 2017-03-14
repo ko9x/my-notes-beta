@@ -20,6 +20,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
   private subscription;
   private headerTitle: string;
   private sectionNotes: Note[] = [];
+  private keys;
 
   constructor(private noteService: NoteService, private router: Router, private route: ActivatedRoute) { }
 
@@ -32,8 +33,30 @@ export class NotesListComponent implements OnInit, OnDestroy {
         this.getHeaderTitle();
       }
     );
-    console.log(this.sectionNotes)
+    setTimeout(() => {
+      this.currentPageSections.push(this.currentPageNotes.filter(item => {
+        return item.section === 'general'
+      }))
+    }, 700);
+    setTimeout(() => {
+      this.currentPageSections.push(this.currentPageNotes.filter(item => {
+        return item.section === 'misc'
+      }))
+    }, 800)
+    setTimeout(() => {
+      this.currentPageSections.push(this.currentPageNotes.filter(item => {
+        return item.section === 'commit'
+      }))
+    }, 800)
+
+
+
+
+    setTimeout(() => { console.log(this.currentPageSections); }, 710);
   }
+
+
+
 
   getCurrentPageNotes() {
     this.notes.forEach(element => {
@@ -41,7 +64,20 @@ export class NotesListComponent implements OnInit, OnDestroy {
         if (note.page === this.notePage) {
           this.currentPageNotes.push(note)
         }
+
+
+
       });
+      // this.currentPageNotes.forEach(note => {
+      //   if(this.currentPageSections.length < 1) {
+      //     this.currentPageSections.push(note)
+      //   }
+      //   this.currentPageSections.forEach(item => {
+      //     if(note.section === item.section) {
+      //       this.currentPageSections.push(note)
+      //     }
+      //     })
+      // })
     });
   }
 
@@ -51,18 +87,11 @@ export class NotesListComponent implements OnInit, OnDestroy {
     this.notes.forEach(element => {
       array1.push(element)
       element.forEach(note => {
-        if (note.page === this.notePage) {
-          if (this.currentPageSections.indexOf(note.section) == -1) {
-            this.currentPageSections.push(note.section);
-          }
-          return this.currentPageSections.slice((this.currentPageSections.length - 1), this.currentPageSections.length)
-        }
       })
     })
   }
 
   getHeaderTitle() {
-    console.log(this.notePage)
     this.headerTitle = this.noteService.getHeaderTitle(this.notePage);
   }
 
