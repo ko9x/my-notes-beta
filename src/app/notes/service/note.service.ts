@@ -35,15 +35,6 @@ export class NoteService {
     this.angularFire.database.object('/notes/' + id).remove();
   }
 
-  // getSections(name: string) {
-  //   if (name === 'git') {
-  //     return this.gitSections;
-  //   }
-  //   if (name === 'angular-fire') {
-  //     return this.angularFireSections;
-  //   }
-  // }
-
   getSections(name: string) {
     return this[name + 'Sections'];
   }
@@ -51,15 +42,6 @@ export class NoteService {
   getHeaderTitle(name: string) {
     return this[name + 'HeaderTitle'];
   }
-
-  // getHeaderTitle(name: string) {
-  //   if (name === 'git') {
-  //     return this.gitHeaderTitle;
-  //   }
-  //   if (name === 'angular-fire') {
-  //     return this.angularFireHeaderTitle;
-  //   }
-  // }
 
 }
 
