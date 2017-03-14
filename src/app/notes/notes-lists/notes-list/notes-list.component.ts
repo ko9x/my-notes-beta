@@ -14,13 +14,13 @@ import { Note } from '../../note';
 export class NotesListComponent implements OnInit, OnDestroy {
 
   private notePage: string;
-  notes: FirebaseListObservable<Note[]>;
+  private notes: FirebaseListObservable<Note[]>;
   private currentPageNotes: Note[] = [];
   private currentPageSections = [];
   private subscription;
-  private headerTitle: string;
-  private sectionNotes: Note[] = [];
-  private keys;
+  private pageHeaderTitle: string;
+  private currentPagesectionTitles: string[] = []
+  private sectionArray = [];
 
   constructor(private noteService: NoteService, private router: Router, private route: ActivatedRoute) { }
 
@@ -37,26 +37,23 @@ export class NotesListComponent implements OnInit, OnDestroy {
       this.currentPageSections.push(this.currentPageNotes.filter(item => {
         return item.section === 'general'
       }))
-    }, 700);
+    }, 600);
     setTimeout(() => {
       this.currentPageSections.push(this.currentPageNotes.filter(item => {
         return item.section === 'misc'
       }))
-    }, 800)
+    }, 600)
     setTimeout(() => {
       this.currentPageSections.push(this.currentPageNotes.filter(item => {
         return item.section === 'commit'
       }))
-    }, 800)
+    }, 600)
 
 
 
 
-    setTimeout(() => { console.log(this.currentPageSections); }, 710);
+    setTimeout(() => { console.log(this.sectionArray); }, 710);
   }
-
-
-
 
   getCurrentPageNotes() {
     this.notes.forEach(element => {
@@ -64,20 +61,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
         if (note.page === this.notePage) {
           this.currentPageNotes.push(note)
         }
-
-
-
       });
-      // this.currentPageNotes.forEach(note => {
-      //   if(this.currentPageSections.length < 1) {
-      //     this.currentPageSections.push(note)
-      //   }
-      //   this.currentPageSections.forEach(item => {
-      //     if(note.section === item.section) {
-      //       this.currentPageSections.push(note)
-      //     }
-      //     })
-      // })
     });
   }
 
@@ -86,13 +70,22 @@ export class NotesListComponent implements OnInit, OnDestroy {
     this.notes = this.noteService.getNotes();
     this.notes.forEach(element => {
       array1.push(element)
-      element.forEach(note => {
+      array1.forEach(note => {
+        note.forEach(item => {
+          if(item.page === this.notePage) {
+            if(this.sectionArray.indexOf(item.section) == -1) {
+            this.sectionArray.push(item.section);
+          }
+          this.sectionArray.slice((this.sectionArray.length -1), (this.sectionArray.length))
+          }
+          
+        })
       })
     })
   }
 
   getHeaderTitle() {
-    this.headerTitle = this.noteService.getHeaderTitle(this.notePage);
+    this.pageHeaderTitle = this.noteService.getHeaderTitle(this.notePage);
   }
 
   toAdd(sectionName) {

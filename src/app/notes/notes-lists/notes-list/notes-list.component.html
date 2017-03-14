@@ -1,12 +1,12 @@
 <div class="container">
   <div class="page-header section-header" id="0">
-    <h1>{{headerTitle}} Notes <small> select a section from the {{notePage}}-notes dropdown</small></h1>
+    <h1>{{pageHeaderTitle}} Notes <small> select a section from the {{pageHeaderTitle}} Notes dropdown</small></h1>
     <button class="btn btn-success" routerLink="/notes/git-notes/git/new">Add A Note</button>
   </div>
   <div *ngFor="let sectionNote of currentPageSections; let i = index" >
     <div *ngFor="let sectionNote of currentPageSections[i]; let i = index; let first = first">
       <div id="{{sectionNote.section}}">
-        <h2  class="section-header" (click)="toAdd()" *ngIf="first">{{sectionNote.section | uppercase}}</h2>
+        <h2  class="section-header" (click)="toAdd(sectionNote.section)" *ngIf="first">{{sectionNote.section | uppercase}}</h2>
         <hr>
           <app-note-item [note]="sectionNote" (click)="onCanEdit(sectionNote)"></app-note-item>
       </div>
