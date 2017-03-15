@@ -8,7 +8,7 @@
       <div id="{{sectionNote.section}}">
         <h2  class="section-header" (click)="toAdd(sectionNote.section)" *ngIf="first">{{sectionNote.section | uppercase}}</h2>
         <hr>
-          <app-note-item [note]="sectionNote" [page]="sectionNote.page" (click)="onCanEdit(sectionNote)"></app-note-item>
+          <app-note-item [note]="sectionNote" [page]="sectionNote.page" (click)="onCanEdit(sectionNote)" (deleteNote)="onDelete($event)"></app-note-item>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Note } from './note';
@@ -11,8 +11,9 @@ import { NoteService } from './service/note.service';
 })
 export class NoteItemComponent implements OnInit {
 
-  @Input() page: string
-  @Input() note: Note
+  @Input() page: string;
+  @Input() note: Note;
+  @Output() deleteNote = new EventEmitter<Note>();
   private subscription;
 
   constructor(private noteService: NoteService, private router: Router, private route: ActivatedRoute) { }
@@ -26,6 +27,10 @@ export class NoteItemComponent implements OnInit {
 
   onDelete(id: string) {
     this.noteService.removeNote(id);
+  }
+
+  onRemoveFromArray() {
+    this.deleteNote.emit(this.note)
   }
 
 }

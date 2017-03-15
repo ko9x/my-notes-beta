@@ -33,13 +33,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
         this.getHeaderTitle();
       }
     );
-    setTimeout(() => {
-      for (let i = 0; i < this.sectionArray.length; i++) {
-        this.currentPageSections.push(this.currentPageNotes.filter(item => {
-          return item.section === this.sectionArray[i]
-        }));
-      }
-    }, 600);
+    this.createSectionNotesArray();
     setTimeout(() => { console.log(this.currentPageSections); }, 710);
   }
 
@@ -71,6 +65,16 @@ export class NotesListComponent implements OnInit, OnDestroy {
     });
   }
 
+  createSectionNotesArray() {
+    setTimeout(() => {
+      for (let i = 0; i < this.sectionArray.length; i++) {
+        this.currentPageSections.push(this.currentPageNotes.filter(item => {
+          return item.section === this.sectionArray[i]
+        }));
+      }
+    }, 600);
+  }
+
   getHeaderTitle() {
     this.pageHeaderTitle = this.noteService.getHeaderTitle(this.notePage);
   }
@@ -81,6 +85,12 @@ export class NotesListComponent implements OnInit, OnDestroy {
 
   onCanEdit(note: Note) {
     note.isEditable = !note.isEditable;
+  }
+
+  onDelete(note: Note) {
+    this.currentPageSections.forEach(array => {
+      array.splice(array.indexOf(note), 1)
+    });
   }
 
   ngOnDestroy() {
