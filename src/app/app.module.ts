@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home.component';
 import { NotesModule } from './notes/notes.module';
 import { routing } from './app.routing';
@@ -21,7 +21,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    NavbarComponent,
     HomeComponent
   ],
   imports: [
