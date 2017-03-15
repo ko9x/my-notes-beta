@@ -4,6 +4,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { NoteService } from '../notes/service/note.service';
 import { Note } from '../notes/note';
+import { FilterPipe } from '../notes/pipes/filter.pipe';
 
 @Component({
   selector: 'app-navbar',
@@ -51,6 +52,7 @@ export class NavbarComponent implements OnInit {
     });
     console.log(this.pageSectionNotesArray)
     console.log(this.pageNotesArray)
+    console.log(this.pageNamesArray)
   }
 
 }

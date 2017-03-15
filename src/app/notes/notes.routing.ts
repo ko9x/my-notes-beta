@@ -8,6 +8,7 @@ import { NoteEditComponent } from './note-edit/note-edit.component';
 const NOTES_ROUTES: Routes = [
     
             { path: 'angularfire-notes/:id', component: NotesListComponent},
+            { path: 'testing-notes/:id', component: NotesListComponent},
             { path: 'git-notes/:id', component: NotesListComponent },
             { path: 'angularfire-notes/:id1/new', component: NoteAddComponent},
             { path: 'git-notes/:id1/new', component: NoteAddComponent },

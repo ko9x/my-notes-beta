@@ -11,7 +11,7 @@
               aria-haspopup="true" aria-expanded="false">{{pageNote[i].page}} Notes <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <div>
-                <li *ngFor="let note of pageNotesArray[i]"><a href="/notes/{{pageNote[i].page}}-notes/{{pageNote[i].page}}#{{note.section}}">{{note.section}}</a>{{pageNote[i].section}}</li>
+                <li *ngFor="let note of pageNotesArray[i] | filter"><a href="/notes/{{pageNote[i].page}}-notes/{{pageNote[i].page}}#{{note}}">{{note}}</a></li>
               </div>
             </ul>
           </li>

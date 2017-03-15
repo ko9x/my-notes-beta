@@ -9,7 +9,6 @@ import { NoteAddComponent } from './note-add/note-add.component';
 import { NoteService } from './service/note.service';
 import { notesRouting } from './notes.routing';
 import { NoteItemComponent } from './note-item.component';
-import { KeysPipe } from './pipes/keys.pipe';
 
 @NgModule({
   imports: [
@@ -18,7 +17,7 @@ import { KeysPipe } from './pipes/keys.pipe';
     ReactiveFormsModule,
     notesRouting
   ],
-  declarations: [NotesListComponent, NoteEditComponent, NoteAddComponent, NoteItemComponent, KeysPipe],
+  declarations: [NotesListComponent, NoteEditComponent, NoteAddComponent, NoteItemComponent],
   providers: [NoteService]
 })
 export class NotesModule { }
