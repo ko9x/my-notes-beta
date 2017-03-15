@@ -18,6 +18,10 @@ export class NoteService {
       this.notes = this.angularFire.database.list('notes');
   }
 
+  getNotes() {
+    return this.angularFire.database.list('notes');
+  }
+
   getCurrentPageSections() {
     return this.currentPageSections;
   }
