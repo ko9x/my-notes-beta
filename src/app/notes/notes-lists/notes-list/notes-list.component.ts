@@ -29,22 +29,10 @@ export class NotesListComponent implements OnInit, OnDestroy {
       (params: any) => {
         this.notePage = params['id']
         this.getNotes();
-        this.getCurrentPageNotes();
         this.getHeaderTitle();
       }
     );
-    this.createSectionNotesArray();
-    setTimeout(() => { console.log(this.currentPageSections); }, 710);
-  }
-
-  getCurrentPageNotes() {
-    this.notes.forEach(element => {
-      element.forEach(note => {
-        if (note.page === this.notePage) {
-          this.currentPageNotes.push(note);
-        }
-      });
-    });
+    // setTimeout(() => { console.log(''); }, 710);
   }
 
   getNotes() {
@@ -55,6 +43,8 @@ export class NotesListComponent implements OnInit, OnDestroy {
       array1.forEach(note => {
         note.forEach(item => {
           if (item.page === this.notePage) {
+            this.currentPageNotes.push(item)
+
             if (this.sectionArray.indexOf(item.section) == -1) {
               this.sectionArray.push(item.section);
             }
@@ -63,16 +53,13 @@ export class NotesListComponent implements OnInit, OnDestroy {
         });
       });
     });
-  }
-
-  createSectionNotesArray() {
     setTimeout(() => {
       for (let i = 0; i < this.sectionArray.length; i++) {
         this.currentPageSections.push(this.currentPageNotes.filter(item => {
           return item.section === this.sectionArray[i]
         }));
       }
-    }, 600);
+    }, 800);
   }
 
   getHeaderTitle() {
