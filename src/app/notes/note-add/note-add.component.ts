@@ -32,8 +32,9 @@ export class NoteAddComponent implements OnInit, OnDestroy {
       }
     )
     this.getSections();
-    this.getHeaderTitle();
     this.initForm();
+    this.noteService.getNotes();
+    this.noteService.createArrays(this.notePage)
   }
 
   initForm() {
@@ -55,11 +56,7 @@ export class NoteAddComponent implements OnInit, OnDestroy {
   }
 
   getSections() {
-    this.sections = this.noteService.getSections(this.notePage);
-  }
-
-  getHeaderTitle() {
-    this.headerTitle = this.noteService.getHeaderTitle(this.notePage);
+    this.sections = this.noteService.getSections();
   }
 
   onCancel() {
@@ -67,7 +64,7 @@ export class NoteAddComponent implements OnInit, OnDestroy {
   }
 
   navigateBack() {
-    this.router.navigate(['/' + this.notePage + '-notes/' + this.notePage]);
+    this.router.navigate(['/notes/' + this.notePage + '-notes/' + this.notePage]);
   }
 
   ngOnDestroy() {

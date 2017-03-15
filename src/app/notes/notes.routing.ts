@@ -1,7 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { AngularFireNotesListComponent } from './notes-lists/angular-fire-notes-list/angular-fire-notes-list.component';
-import { NotesListComponent } from './notes-lists/notes-list/notes-list.component';
+import { NotesListComponent } from './notes-list.component';
 import { NoteAddComponent } from './note-add/note-add.component';
 import { NoteEditComponent } from './note-edit/note-edit.component';
 

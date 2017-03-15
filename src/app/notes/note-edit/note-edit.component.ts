@@ -37,7 +37,8 @@ export class NoteEditComponent implements OnInit, OnDestroy {
         }
       }
     )
-    this.getHeaderTitle()
+    this.noteService.getNotes();
+    this.noteService.createArrays(this.notePage)
     this.getSections()
     this.initForm();
     setTimeout(() => { this.initForm(); }, 150);
@@ -74,12 +75,8 @@ export class NoteEditComponent implements OnInit, OnDestroy {
     this.navigateBack();
   }
 
-  getHeaderTitle() {
-    this.headerTitle = this.noteService.getHeaderTitle(this.notePage)
-  }
-
   getSections() {
-    this.sections = this.noteService.getSections(this.notePage)
+    this.sections = this.noteService.getSections();
   }
 
   onCancel() {
@@ -87,7 +84,7 @@ export class NoteEditComponent implements OnInit, OnDestroy {
   }
 
   navigateBack() {
-    this.router.navigate(['/' + this.notePage + '-notes/' + this.notePage]);
+    this.router.navigate(['/notes/' + this.notePage + '-notes/' + this.notePage]);
   }
 
   ngOnDestroy() {

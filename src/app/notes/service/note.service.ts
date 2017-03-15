@@ -6,10 +6,13 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 @Injectable()
 export class NoteService {
 
-  private notes: FirebaseListObservable<Note>[];
+  private notes: FirebaseListObservable<Note[]>;
+  private currentPageNotes = [];
+  private sectionArray = [];
+  private currentPageSections = [];
 
-  private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning'];
-  private angularfireSections = ['misc', 'methods'];
+  // private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning'];
+  // private angularfireSections = ['misc', 'methods'];
 
   private gitHeaderTitle = 'Git/Github';
   private angularfireHeaderTitle = 'AngularFire2/Firebase';
@@ -18,7 +21,11 @@ export class NoteService {
   }
 
   getNotes() {
-    return this.angularFire.database.list('notes');
+      this.notes = this.angularFire.database.list('notes');
+  }
+
+  getCurrentPageSections() {
+    return this.currentPageSections;
   }
 
   storeNote(note: Note) {
@@ -37,40 +44,35 @@ export class NoteService {
     this.angularFire.database.object('/notes/' + id).remove();
   }
 
-  getSections(name: string) {
-    return this[name + 'Sections'];
+  getSections() {
+    return this.sectionArray;
   }
 
-  getHeaderTitle(name: string) {
-    return this[name + 'HeaderTitle'];
+  createArrays(page) {
+    let array1 = [];
+    this.notes.forEach(element => {
+      array1.push(element);
+      array1.forEach(note => {
+        note.forEach(item => {
+          if (item.page === page) {
+            this.currentPageNotes.push(item)
+
+            if (this.sectionArray.indexOf(item.section) == -1) {
+              this.sectionArray.push(item.section);
+            }
+            this.sectionArray.slice((this.sectionArray.length - 1), (this.sectionArray.length));
+          }
+        });
+      });
+    });
+    setTimeout(() => {
+      for (let i = 0; i < this.sectionArray.length; i++) {
+        this.currentPageSections.push(this.currentPageNotes.filter(item => {
+          return item.section === this.sectionArray[i]
+        }));
+      }
+    }, 800);
   }
-
-  // createArrays() {
-  //   let array1 = [];
-  //   this.notes = this.noteService.getNotes();
-  //   this.notes.forEach(element => {
-  //     array1.push(element);
-  //     array1.forEach(note => {
-  //       note.forEach(item => {
-  //         if (item.page === this.notePage) {
-  //           this.currentPageNotes.push(item)
-
-  //           if (this.sectionArray.indexOf(item.section) == -1) {
-  //             this.sectionArray.push(item.section);
-  //           }
-  //           this.sectionArray.slice((this.sectionArray.length - 1), (this.sectionArray.length));
-  //         }
-  //       });
-  //     });
-  //   });
-  //   setTimeout(() => {
-  //     for (let i = 0; i < this.sectionArray.length; i++) {
-  //       this.currentPageSections.push(this.currentPageNotes.filter(item => {
-  //         return item.section === this.sectionArray[i]
-  //       }));
-  //     }
-  //   }, 800);
-  // }
 
 }
 
