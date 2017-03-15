@@ -25,7 +25,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
     this.subscription = this.route.params.subscribe(
       (params: any) => {
         this.notePage = params['id']
-        this.noteService.getNotes();
+        this.noteService.startNotes();
         this.noteService.createArrays(this.notePage);
         this.currentPageSections = this.noteService.getCurrentPageSections();
       }

@@ -33,7 +33,7 @@ export class NoteAddComponent implements OnInit, OnDestroy {
     )
     this.getSections();
     this.initForm();
-    this.noteService.getNotes();
+    this.noteService.startNotes();
     this.noteService.createArrays(this.notePage)
   }
 

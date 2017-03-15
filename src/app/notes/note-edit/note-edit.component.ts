@@ -37,7 +37,7 @@ export class NoteEditComponent implements OnInit, OnDestroy {
         }
       }
     )
-    this.noteService.getNotes();
+    this.noteService.startNotes();
     this.noteService.createArrays(this.notePage)
     this.getSections()
     this.initForm();

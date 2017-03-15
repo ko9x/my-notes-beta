@@ -11,16 +11,10 @@ export class NoteService {
   private sectionArray = [];
   private currentPageSections = [];
 
-  // private gitSections = ['misc', 'general', 'commit', 'log', 'diff', 'branch', 'merge', 'tag', 'stash', 'time-travel', 'remote', 'cloning'];
-  // private angularfireSections = ['misc', 'methods'];
-
-  private gitHeaderTitle = 'Git/Github';
-  private angularfireHeaderTitle = 'AngularFire2/Firebase';
-
   constructor(private http: Http, private angularFire: AngularFire) {
   }
 
-  getNotes() {
+  startNotes() {
       this.notes = this.angularFire.database.list('notes');
   }
 
