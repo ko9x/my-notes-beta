@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Router } from '@angular/router';
 
 import { NoteService } from '../notes/service/note.service';
 import { Note } from '../notes/note';
@@ -15,8 +15,9 @@ export class NavbarComponent implements OnInit {
   private notes: FirebaseListObservable<Note[]>;
   private pageNotesArray = [];
   private pageNamesArray = [];
+  routesArray = []
 
-  constructor(private noteService: NoteService) { }
+  constructor(private noteService: NoteService, private router: Router) { }
 
   ngOnInit() {
     this.notes = this.noteService.getNotes();
@@ -32,6 +33,7 @@ export class NavbarComponent implements OnInit {
         }));
       }
     });
+
   }
 
 }
