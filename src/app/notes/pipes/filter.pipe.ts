@@ -5,8 +5,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
   transform(value, args: any[]): any {
-    if (!value) {
-      return value;
+    if(!value) {
+      return value
+    }
+
+    if (value.length === 1) {
+      let list = []
+      value.forEach(note => {
+        list.push(note.section)
+      })
+      return list;
     }
 
     let list = [];

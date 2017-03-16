@@ -15,7 +15,7 @@ export class NoteService {
   }
 
   startNotes() {
-      this.notes = this.angularFire.database.list('notes');
+    this.notes = this.angularFire.database.list('notes');
   }
 
   getNotes() {
@@ -54,7 +54,6 @@ export class NoteService {
         note.forEach(item => {
           if (item.page === page) {
             this.currentPageNotes.push(item)
-
             if (this.sectionArray.indexOf(item.section) == -1) {
               this.sectionArray.push(item.section);
             }

@@ -4,7 +4,6 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { NoteService } from '../notes/service/note.service';
 import { Note } from '../notes/note';
-import { FilterPipe } from '../notes/pipes/filter.pipe';
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +15,6 @@ export class NavbarComponent implements OnInit {
   private notes: FirebaseListObservable<Note[]>;
   private pageNotesArray = [];
   private pageNamesArray = [];
-  private pageSectionNamesArray = [];
-  private pageSectionNotesArray = [];
 
   constructor(private noteService: NoteService) { }
 
@@ -25,34 +22,16 @@ export class NavbarComponent implements OnInit {
     this.notes = this.noteService.getNotes();
     this.notes.forEach(element => {
       element.forEach(note => {
-        if (note.page) {
-          if (this.pageNamesArray.indexOf(note.page) == -1) {
-            this.pageNamesArray.push(note.page)
-          }
-          if (this.pageSectionNamesArray.indexOf(note.section) == -1) {
-            this.pageSectionNamesArray.push(note.section)
-          }
+        if (this.pageNamesArray.indexOf(note.page) == -1) {
+          this.pageNamesArray.push(note.page)
         }
       });
-      setTimeout(() => {
-        for (let i = 0; i < this.pageSectionNamesArray.length; i++) {
-          this.pageSectionNotesArray.push(element.filter(item => {
-            return item.section === this.pageSectionNamesArray[i]
-          }));
-        }
-      }, 800);
-      setTimeout(() => {
-        for (let i = 0; i < this.pageNamesArray.length; i++) {
-          this.pageNotesArray.push(element.filter(item => {
-            return item.page === this.pageNamesArray[i]
-          }));
-        }
-      }, 1200);
-      
+      for (let i = 0; i < this.pageNamesArray.length; i++) {
+        this.pageNotesArray.push(element.filter(item => {
+          return item.page === this.pageNamesArray[i]
+        }));
+      }
     });
-    console.log(this.pageSectionNotesArray)
-    console.log(this.pageNotesArray)
-    console.log(this.pageNamesArray)
   }
 
 }
