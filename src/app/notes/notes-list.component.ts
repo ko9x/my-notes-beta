@@ -13,7 +13,7 @@ import { Note } from './note';
 })
 export class NotesListComponent implements OnInit, OnDestroy {
 
-  private notePage: string;
+  private notePage: string = '';
   private currentPageSections = [];
   private subscription;
   private pageHeaderTitle: string;
@@ -27,15 +27,15 @@ export class NotesListComponent implements OnInit, OnDestroy {
         this.notePage = params['id']
         this.noteService.startNotes();
         this.noteService.createArrays(this.notePage);
-        this.currentPageSections = this.noteService.getCurrentPageSections();
-        
+        this.currentPageSections = this.noteService.getCurrentPageSections()
       }
     );
     // setTimeout(() => { console.log(this.currentPageSections.length) }, 1000);
+    
   }
 
   toAdd(sectionName) {
-    this.router.navigate(['notes/' + this.notePage + '-notes/' + this.notePage + '/new/' + sectionName]);
+    this.router.navigate(['notes/note/' + this.notePage + '/new/' + sectionName]);
   }
 
   onCanEdit(note: Note) {

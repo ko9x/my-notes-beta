@@ -22,7 +22,7 @@ export class NoteItemComponent implements OnInit {
   }
 
   onEdit(id: string) {
-    this.router.navigate(['/notes/' + this.page + '-notes/' + this.page + '/' + id + '/edit']);
+    this.router.navigate(['/notes/note/' + this.page + '/' + id + '/edit']);
   }
 
   onDelete(id: string) {

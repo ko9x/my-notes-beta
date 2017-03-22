@@ -1,7 +1,7 @@
 <div class="container">
   <div class="page-header section-header" id="0">
     <h1>{{notePage | uppercase}} Notes <small> select a section from the {{notePage}} notes dropdown</small></h1>
-    <button class="btn btn-success" routerLink="/notes/{{notePage}}-notes/{{notePage}}/new">Add A Note</button>
+    <button class="btn btn-success" routerLink="/notes/note/{{notePage}}/new">Add A Note</button>
   </div>
   <div *ngFor="let sectionNote of currentPageSections; let i = index" >
     <div *ngFor="let sectionNote of currentPageSections[i]; let i = index; let first = first">

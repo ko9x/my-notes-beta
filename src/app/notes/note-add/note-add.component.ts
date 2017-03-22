@@ -64,7 +64,7 @@ export class NoteAddComponent implements OnInit, OnDestroy {
   }
 
   navigateBack() {
-    this.router.navigate(['/notes/' + this.notePage + '-notes/' + this.notePage]);
+    this.router.navigate(['/notes/list/' + this.notePage]);
   }
 
   ngOnDestroy() {
