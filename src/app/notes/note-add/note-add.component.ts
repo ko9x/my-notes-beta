@@ -17,6 +17,9 @@ export class NoteAddComponent implements OnInit, OnDestroy {
   private noteForm: FormGroup;
   private sections: string[] = [];
   private headerTitle: string = "";
+  private sectionToggleButton = "";
+  private addingNewPage = false;
+  private showRadios = true
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private route: ActivatedRoute, private router: Router) { }
 
@@ -25,10 +28,17 @@ export class NoteAddComponent implements OnInit, OnDestroy {
       (params: any) => {
         if (params.hasOwnProperty('id1')) {
           this.notePage = params['id1']
+          this.sectionToggleButton = "Add New Section"
         }
         if (params.hasOwnProperty('id2')) {
           this.noteSection = params['id2']
+          this.sectionToggleButton = "Add New Section"
+        } 
+        if (!params.hasOwnProperty('id1') && !params.hasOwnProperty('id2')) {
+          this.addingNewPage = true
+          this.showRadios = false
         }
+
       }
     )
     this.getSections();
@@ -45,12 +55,13 @@ export class NoteAddComponent implements OnInit, OnDestroy {
       side: [''],
       important: [''],
       isEditable: false,
-      page: this.notePage
+      page: [this.notePage, Validators.required]
     })
   }
 
 
   onSubmit() {
+    this.notePage = this.noteForm.value.page
     this.noteService.storeNote(this.noteForm.value)
     this.navigateBack();
   }
@@ -69,6 +80,15 @@ export class NoteAddComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  toggleRadios() {
+    this.showRadios = !this.showRadios;
+    if(this.showRadios) {
+      this.sectionToggleButton = 'Add New Section'
+    } else {
+      this.sectionToggleButton = 'Show Existing Sections'
+    }
   }
 
 

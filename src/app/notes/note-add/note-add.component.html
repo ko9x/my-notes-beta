@@ -1,12 +1,28 @@
 <div class="container">
+  <div *ngIf="!addingNewPage">
+    <button (click)="toggleRadios()">{{sectionToggleButton}}</button>
+  </div>
   <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
-    <h3 id="section-title" >Choose a section for your {{notePage}} note</h3>
-    <div class="radio" *ngFor="let section of sections">
+    <h3 id="section-title">Choose a section for your {{notePage}} note</h3>
+    <div *ngIf="addingNewPage">
+      <div class="form-group">
+        <label for="page">Page Name<small> must be all lowercase, no special symbols</small></label>
+        <input type="text" formControlName="page" id="page" class="form-control">
+      </div>
+    </div>
+    <div *ngIf="showRadios == false">
+      <div class="form-group">
+        <label for="section">Section Name<small> must be all lowercase, no special symbols</small></label>
+        <input type="text" formControlName="section" id="section" class="form-control">
+      </div>
+    </div>
+    <div *ngIf="sections.length > 0 && showRadios == true">
+      <div class="radio" *ngFor="let section of sections">
         <label>
             <input type="radio" formControlName="section" [value]="section"><p>{{section}}</p>
         </label>
+      </div>
     </div>
-    <br><br><br>
     <div class="form-group">
       <label for="title">Title</label>
       <input formControlName="title" type="text" id="title" class="form-control">
@@ -27,4 +43,3 @@
     <button class="btn" (click)="onCancel()">Cancel</button>
   </form>
 </div>
-
