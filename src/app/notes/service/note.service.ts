@@ -52,7 +52,6 @@ export class NoteService {
     this.currentPageSections = []
     this.notes.forEach(element => {
       array1.push(element);
-      console.log(this.currentPageSections)
       array1.forEach(note => {
         note.forEach(item => {
           if (item.page === page) {

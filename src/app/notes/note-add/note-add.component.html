@@ -1,9 +1,10 @@
 <div class="container">
+  <h3 id="section-title">Choose a section for your {{notePage}} note</h3>
   <div *ngIf="!addingNewPage">
-    <button (click)="toggleRadios()">{{sectionToggleButton}}</button>
+    <button class="btn btn-info" (click)="toggleRadios()">{{sectionToggleButton}}</button>
   </div>
+  <br>
   <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
-    <h3 id="section-title">Choose a section for your {{notePage}} note</h3>
     <div *ngIf="addingNewPage">
       <div class="form-group">
         <label for="page">Page Name<small> must be all lowercase, no special symbols</small></label>
