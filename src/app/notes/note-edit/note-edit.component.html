@@ -13,15 +13,15 @@
     </div>
     <div class="form-group">
       <label for="content">Content</label>
-      <textarea formControlName="content" type="text" id="content" class="form-control"></textarea>
+      <textarea rows="10" formControlName="content" type="text" id="content" class="form-control"></textarea>
     </div>
     <div class="form-group">
       <label for="side">Optional Side Note</label>
-      <textarea formControlName="side" type="text" id="side" class="form-control"></textarea>
+      <textarea rows="3" formControlName="side" type="text" id="side" class="form-control"></textarea>
     </div>
     <div class="form-group">
       <label for="important">Optional Important Note</label>
-      <textarea formControlName="important" type="text" id="important" class="form-control"></textarea>
+      <textarea rows="3" formControlName="important" type="text" id="important" class="form-control"></textarea>
     </div>
     <button type="submit" [disabled]="!noteForm.valid" class="btn btn-success">Save</button>
     <button (click)="onCancel()" class="btn">Cancel</button>
