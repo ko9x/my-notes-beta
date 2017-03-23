@@ -49,13 +49,13 @@ export class NoteAddComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.noteForm = this.formBuilder.group({
-      section: [this.noteSection, Validators.required],
+      section: [this.noteSection, [Validators.required, Validators.pattern("[a-z]+")]],
       title: ['', Validators.required],
       content: ['', Validators.required],
       side: [''],
       important: [''],
       isEditable: false,
-      page: [this.notePage, Validators.required]
+      page: [this.notePage, [Validators.required, Validators.pattern("[a-z]+")]]
     })
   }
 
@@ -71,7 +71,12 @@ export class NoteAddComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
-    this.navigateBack();
+    if(this.notePage) {
+      this.navigateBack()
+    } else {
+      this.router.navigate([''])
+    }
+
   }
 
   navigateBack() {
