@@ -4,7 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   selector: 'app-home',
   template: `
     <div class="container">
-      <h1>Please Select A Notes List From The Navbar Or <a href="/my-notes/notes/note/new" >Add New A Page</a></h1>
+      <h1>Please Select A Notes List From The Navbar Or <a href="/my-notes-beta/notes/note/new" >Add New A Page</a></h1>
     </div>
   `,
   styles: [
