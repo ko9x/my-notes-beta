@@ -41,6 +41,6 @@
       <textarea formControlName="important" type="text" id="important" class="form-control"></textarea>
     </div>
     <button type="submit" [disabled]="!noteForm.valid" class="btn btn-primary">Add Note</button>
+    <button class="btn" type="button" (click)="onCancel()">Cancel</button>
   </form>
-  <button class="btn" type="cancel" (click)="onCancel()">Cancel</button>
 </div>
