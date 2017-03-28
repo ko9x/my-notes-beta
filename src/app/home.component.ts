@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
       method: AuthMethods.Password,
       provider: AuthProviders.Password
     })
-    .then(authState => console.log("logged in", authState))
+    .then(authState => console.log("logged in"))
     .catch(error => console.log("fuck", error))
   }
 
