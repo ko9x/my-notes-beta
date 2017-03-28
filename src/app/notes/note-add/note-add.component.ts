@@ -49,13 +49,13 @@ export class NoteAddComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.noteForm = this.formBuilder.group({
-      section: [this.noteSection, [Validators.required, Validators.pattern("[a-z]+")]],
+      section: [this.noteSection, [Validators.required, Validators.pattern("[a-z0-9]+")]],
       title: ['', Validators.required],
       content: ['', Validators.required],
       side: [''],
       important: [''],
       isEditable: false,
-      page: [this.notePage, [Validators.required, Validators.pattern("[a-z]+")]]
+      page: [this.notePage, [Validators.required, Validators.pattern("[a-z0-9]+")]]
     })
   }
 
