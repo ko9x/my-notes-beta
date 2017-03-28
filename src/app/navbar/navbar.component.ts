@@ -16,24 +16,37 @@ export class NavbarComponent implements OnInit {
   private pageNotesArray = [];
   private pageNamesArray = [];
   routesArray = []
+  private currentUser;
 
-  constructor(private noteService: NoteService, private router: Router) { }
+  constructor(private noteService: NoteService, private router: Router, private angularFire: AngularFire) { }
 
   ngOnInit() {
-    this.notes = this.noteService.getNotes();
-    this.notes.forEach(element => {
-      element.forEach(note => {
-        if (this.pageNamesArray.indexOf(note.page) == -1) {
-          this.pageNamesArray.push(note.page)
-        }
-      });
-      for (let i = 0; i < this.pageNamesArray.length; i++) {
-        this.pageNotesArray.push(element.filter(item => {
-          return item.page === this.pageNamesArray[i]
-        }));
+    this.angularFire.auth.subscribe(authState => {
+      if (authState) {
+        this.currentUser = authState.auth.email
+        this.notes = this.noteService.getNotes();
+        this.notes.forEach(element => {
+          element.forEach(note => {
+            if (this.pageNamesArray.indexOf(note.page) == -1) {
+              this.pageNamesArray.push(note.page)
+            }
+          });
+          for (let i = 0; i < this.pageNamesArray.length; i++) {
+            this.pageNotesArray.push(element.filter(item => {
+              return item.page === this.pageNamesArray[i]
+            }));
+          }
+        });
+
       }
     });
 
+  }
+
+  logout() {
+    this.angularFire.auth.logout();
+    this.currentUser = null;
+    this.router.navigate(['/']);
   }
 
 }
