@@ -19,7 +19,7 @@ export class NoteAddComponent implements OnInit, OnDestroy {
   private headerTitle: string = "";
   private sectionToggleButton = "";
   private addingNewPage = false;
-  private showRadios = true
+  private showRadios = true;
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private route: ActivatedRoute, private router: Router) { }
 
@@ -59,7 +59,6 @@ export class NoteAddComponent implements OnInit, OnDestroy {
     })
   }
 
-
   onSubmit() {
     this.notePage = this.noteForm.value.page
     this.noteService.storeNote(this.noteForm.value)
@@ -77,6 +76,11 @@ export class NoteAddComponent implements OnInit, OnDestroy {
       this.router.navigate([''])
     }
 
+  }
+
+  pasteString(section) {
+    var destination = document.getElementById(section).focus();
+    document.execCommand('insertText', false, '<pre><code> </code></pre>');
   }
 
   navigateBack() {
