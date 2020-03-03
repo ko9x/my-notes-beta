@@ -1,5 +1,8 @@
 # My Notes
 
+## View the site at 
+https://ko9x.github.io/my-notes-beta/
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-beta.31.
 
 ## Development server
