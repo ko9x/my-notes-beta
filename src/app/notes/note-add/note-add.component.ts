@@ -78,9 +78,17 @@ export class NoteAddComponent implements OnInit, OnDestroy {
 
   }
 
-  pasteString(section) {
+  pasteCodeWrap(section) {
     var destination = document.getElementById(section).focus();
     document.execCommand('insertText', false, '<pre><code> </code></pre>');
+  }
+  pastePTag(section) {
+    var destination = document.getElementById(section).focus();
+    document.execCommand('insertText', false, '<p> </p>');
+  }
+  pasteHRef(section) {
+    var destination = document.getElementById(section).focus();
+    document.execCommand('insertText', false, '<a href="" target="_blank"> <a/>');
   }
 
   navigateBack() {
