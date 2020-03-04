@@ -51,7 +51,7 @@ var HomeComponent = (function () {
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
             selector: 'app-home',
-            template: "\n    <div class=\"container\">\n      <div *ngIf=\"currentUser\">\n        <h1>Please Select A Notes List From The Navbar Or <a routerLink=\"notes/note/new\" >Add A New Page</a></h1>\n      </div>\n      <div *ngIf=\"!currentUser\">\n        <h1>Please Login</h1>\n        <form [formGroup]=\"userForm\" (ngSubmit)=\"onSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"email\">E-Mail</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"email\"\n                   formControlName=\"email\">\n            <div *ngIf=\"userForm.controls['email'].invalid && userForm.controls['email'].dirty && userForm.controls['email'].touched\">\n                <p>Invalid Email</p>\n            </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input type=\"password\"\n               class=\"form-control\"\n               id=\"password\"\n               formControlName=\"password\">\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"userForm.invalid\">Login</button>\n        </form>\n      </div>\n    </div>\n  ",
+            template: "\n    <div class=\"container\">\n      <div *ngIf=\"!currentUser\">\n        <h1>Please Select A Notes List From The Navbar Or hello <a routerLink=\"notes/note/new\" >Add A New Page</a></h1>\n      </div>\n      <div *ngIf=\"currentUser\">\n        <h1>Please Login</h1>\n        <form [formGroup]=\"userForm\" (ngSubmit)=\"onSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"email\">E-Mail</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"email\"\n                   formControlName=\"email\">\n            <div *ngIf=\"userForm.controls['email'].invalid && userForm.controls['email'].dirty && userForm.controls['email'].touched\">\n                <p>Invalid Email</p>\n            </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input type=\"password\"\n               class=\"form-control\"\n               id=\"password\"\n               formControlName=\"password\">\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"userForm.invalid\">Login</button>\n        </form>\n      </div>\n    </div>\n  ",
             styles: [
                 "\n    body {\n      padding-top: 70px;\n    }\n  "
             ],
@@ -886,7 +886,7 @@ module.exports = "body {\n    padding-top: 70px;\n}\n\n.page-header {\n    color
 /***/ 557:
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<router-outlet></router-outlet>"
+module.exports = "<app-navbar></app-navbar>\n<router-outlet></router-outlet>\n<!-- this is the app component -->"
 
 /***/ }),
 
