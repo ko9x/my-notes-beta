@@ -7,10 +7,10 @@ import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
   selector: 'app-home',
   template: `
     <div class="container">
-      <div *ngIf="currentUser">
+      <div *ngIf="!currentUser">
         <h1>Please Select A Notes List From The Navbar Or hello <a routerLink="notes/note/new" >Add A New Page</a></h1>
       </div>
-      <div *ngIf="!currentUser">
+      <div *ngIf="currentUser">
         <h1>Please Login</h1>
         <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
