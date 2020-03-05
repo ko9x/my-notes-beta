@@ -1029,7 +1029,7 @@ var NoteService = (function () {
             for (var i = 0; i < _this.sectionArray.length; i++) {
                 _loop_1(i);
             }
-        }, 800);
+        }, 3200);
     };
     NoteService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Injectable */])(), 
