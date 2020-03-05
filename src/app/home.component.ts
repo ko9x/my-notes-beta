@@ -8,7 +8,8 @@ import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
   template: `
     <div class="container">
       <div *ngIf="currentUser">
-        <h1>Please Select A Notes List From The Navbar Or hello <a routerLink="notes/note/new" >Add A New Page</a></h1>
+      <h2>Select A Notes Catagory From The Navbar </h2>
+      <h2><a routerLink="notes/note/new" > Or Add A New Notes Catagory</a></h2>
       </div>
       <div *ngIf="!currentUser">
         <h1>Please Login</h1>
