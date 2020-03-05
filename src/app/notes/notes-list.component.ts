@@ -30,8 +30,6 @@ export class NotesListComponent implements OnInit, OnDestroy {
         this.currentPageSections = this.noteService.getCurrentPageSections()
       }
     );
-    // setTimeout(() => { console.log(this.currentPageSections.length) }, 1000);
-    
   }
 
   toAdd(sectionName) {

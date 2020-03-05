@@ -70,7 +70,7 @@ export class NoteService {
           return item.section === this.sectionArray[i]
         }));
       }
-    }, 1800);
+    }, 3200);
   }
 
 }
