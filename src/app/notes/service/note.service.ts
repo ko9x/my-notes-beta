@@ -51,14 +51,12 @@ export class NoteService {
   }
 
   createArrays(page) {
-    let array1 = [];
     this.currentPageNotes = []
     this.currentPageSections = []
     this.getNotes().subscribe((response: any) => {
       if (response) { 
            new Promise((resolve, reject) => {
              response.forEach( item => {
-              console.log('item from subscribe',item ); //@DEBUG
               if (item.page === page) {
                  this.currentPageNotes.push(item)
                 if (this.sectionArray.indexOf(item.section) == -1) {
@@ -74,31 +72,9 @@ export class NoteService {
                 return item.section === this.sectionArray[i]
               }));
             }
-          })
+          });
       }
-    })
-    // this.notes.forEach(element => {
-    //   array1.push(element);
-    //   array1.forEach(note => {
-    //     note.forEach(item => {
-    //       console.log('item from other', item); //@DEBUG
-    //       if (item.page === page) {
-    //         this.currentPageNotes.push(item)
-    //         if (this.sectionArray.indexOf(item.section) == -1) {
-    //           this.sectionArray.push(item.section);
-    //         }
-    //         this.sectionArray.slice((this.sectionArray.length - 1), (this.sectionArray.length));
-    //       }
-    //     });
-    //   });
-    // });
-    // setTimeout(() => {
-    //   for (let i = 0; i < this.sectionArray.length; i++) {
-    //     this.currentPageSections.push(this.currentPageNotes.filter(item => {
-    //       return item.section === this.sectionArray[i]
-    //     }));
-    //   }
-    // }, 3000);
+    });
   }
 
 }
