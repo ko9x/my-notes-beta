@@ -14,11 +14,11 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav" *ngFor="let name of pageNamesArray; let i = index">
           <li class="dropdown">
-            <a routerLink="/notes/list/{{name}}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{name}} notes <span class="caret"></span></a>
+            <a routerLink="/my-notes-beta/notes/list/{{name}}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{name}} notes <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <div>
-                <li><a href="/notes/list/{{name}}#0">top of page</a></li>
-                <li *ngFor="let note of pageNotesArray[i] | filter"><a href="/notes/list/{{name}}#{{note}}">{{note}}</a></li>
+                <li><a href="/my-notes-beta/notes/list/{{name}}#0">top of page</a></li>
+                <li *ngFor="let note of pageNotesArray[i] | filter"><a href="/my-notes-beta/notes/list/{{name}}#{{note}}">{{note}}</a></li>
               </div>
             </ul>
           </li>
