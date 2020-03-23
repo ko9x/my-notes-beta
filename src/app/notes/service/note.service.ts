@@ -46,31 +46,35 @@ export class NoteService {
     return this.sectionArray;
   }
 
+  looper(item) {
+    item.page 
+  }
+
   createArrays(page) {
-    let array1 = [];
     this.currentPageNotes = []
     this.currentPageSections = []
-    this.notes.forEach(element => {
-      array1.push(element);
-      array1.forEach(note => {
-        note.forEach(item => {
-          if (item.page === page) {
-            this.currentPageNotes.push(item)
-            if (this.sectionArray.indexOf(item.section) == -1) {
-              this.sectionArray.push(item.section);
+    this.getNotes().subscribe((response: any) => {
+      if (response) { 
+           new Promise((resolve, reject) => {
+             response.forEach( item => {
+              if (item.page === page) {
+                 this.currentPageNotes.push(item)
+                if (this.sectionArray.indexOf(item.section) == -1) {
+                  this.sectionArray.push(item.section);
+                }
+                this.sectionArray.slice((this.sectionArray.length - 1), (this.sectionArray.length));
+              }
+              if(response.indexOf(item) === response.length -1) resolve()
+            });
+          }).then(() => {
+            for (let i = 0; i < this.sectionArray.length; i++) {
+              this.currentPageSections.push(this.currentPageNotes.filter(item => {
+                return item.section === this.sectionArray[i]
+              }));
             }
-            this.sectionArray.slice((this.sectionArray.length - 1), (this.sectionArray.length));
-          }
-        });
-      });
-    });
-    setTimeout(() => {
-      for (let i = 0; i < this.sectionArray.length; i++) {
-        this.currentPageSections.push(this.currentPageNotes.filter(item => {
-          return item.section === this.sectionArray[i]
-        }));
+          });
       }
-    }, 3000);
+    });
   }
 
 }

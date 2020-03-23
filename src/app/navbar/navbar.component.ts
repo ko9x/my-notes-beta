@@ -24,20 +24,20 @@ export class NavbarComponent implements OnInit {
     this.angularFire.auth.subscribe(authState => {
       if (authState) {
         this.currentUser = authState.auth.email
-        this.notes = this.noteService.getNotes();
-        this.notes.forEach(element => {
-          element.forEach(note => {
-            if (this.pageNamesArray.indexOf(note.page) == -1) {
-              this.pageNamesArray.push(note.page)
+        this.noteService.getNotes().subscribe((response: any) => {
+          if (response) {
+            response.forEach(note => {
+              if (this.pageNamesArray.indexOf(note.page) == -1) {
+                this.pageNamesArray.push(note.page)
+              }
+            });
+            for (let i = 0; i < this.pageNamesArray.length; i++) {
+              this.pageNotesArray.push(response.filter(item => {
+                return item.page === this.pageNamesArray[i]
+              }));
             }
-          });
-          for (let i = 0; i < this.pageNamesArray.length; i++) {
-            this.pageNotesArray.push(element.filter(item => {
-              return item.page === this.pageNamesArray[i]
-            }));
           }
         });
-
       }
     });
 

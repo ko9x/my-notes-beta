@@ -95,6 +95,10 @@ export class NoteEditComponent implements OnInit, OnDestroy {
     var destination = document.getElementById(section).focus();
     document.execCommand('insertText', false, '<a href="" target="_blank"> <a/>');
   }
+  pasteLi(section) {
+    var destination = document.getElementById(section).focus();
+    document.execCommand('insertText', false, '<li> </li>');
+  }
   navigateBack() {
     this.router.navigate(['/notes/list/' + this.notePage]);
   }
