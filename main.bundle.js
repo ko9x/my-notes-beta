@@ -51,7 +51,7 @@ var HomeComponent = (function () {
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
             selector: 'app-home',
-            template: "\n    <div class=\"container\">\n      <div *ngIf=\"currentUser\">\n        <h2>Select A Notes Catagory From The Navbar </h2>\n        <h2><a routerLink=\"notes/note/new\" > Or Add A New Notes Catagory</a></h2>\n      </div>\n      <div *ngIf=\"!currentUser\">\n        <h1>Please Login</h1>\n        <form [formGroup]=\"userForm\" (ngSubmit)=\"onSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"email\">E-Mail</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"email\"\n                   formControlName=\"email\">\n            <div *ngIf=\"userForm.controls['email'].invalid && userForm.controls['email'].dirty && userForm.controls['email'].touched\">\n                <p>Invalid Email</p>\n            </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input type=\"password\"\n               class=\"form-control\"\n               id=\"password\"\n               formControlName=\"password\">\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"userForm.invalid\">Login</button>\n        </form>\n      </div>\n    </div>\n  ",
+            template: "\n    <div class=\"container\">\n      <div *ngIf=\"currentUser\">\n      <h2>Select A Notes Catagory From The Navbar </h2>\n      <h2><a routerLink=\"notes/note/new\" > Or Add A New Notes Catagory</a></h2>\n      </div>\n      <div *ngIf=\"!currentUser\">\n        <h1>Please Login</h1>\n        <form [formGroup]=\"userForm\" (ngSubmit)=\"onSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"email\">E-Mail</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"email\"\n                   formControlName=\"email\">\n            <div *ngIf=\"userForm.controls['email'].invalid && userForm.controls['email'].dirty && userForm.controls['email'].touched\">\n                <p>Invalid Email</p>\n            </div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input type=\"password\"\n               class=\"form-control\"\n               id=\"password\"\n               formControlName=\"password\">\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"userForm.invalid\">Login</button>\n        </form>\n      </div>\n    </div>\n  ",
             styles: [
                 "\n    body {\n      padding-top: 70px;\n    }\n  "
             ],
@@ -161,6 +161,10 @@ var NoteAddComponent = (function () {
     NoteAddComponent.prototype.pasteHRef = function (section) {
         var destination = document.getElementById(section).focus();
         document.execCommand('insertText', false, '<a href="" target="_blank"> <a/>');
+    };
+    NoteAddComponent.prototype.pasteLi = function (section) {
+        var destination = document.getElementById(section).focus();
+        document.execCommand('insertText', false, '<li> </li>');
     };
     NoteAddComponent.prototype.navigateBack = function () {
         this.router.navigate(['/notes/list/' + this.notePage]);
@@ -287,6 +291,10 @@ var NoteEditComponent = (function () {
         var destination = document.getElementById(section).focus();
         document.execCommand('insertText', false, '<a href="" target="_blank"> <a/>');
     };
+    NoteEditComponent.prototype.pasteLi = function (section) {
+        var destination = document.getElementById(section).focus();
+        document.execCommand('insertText', false, '<li> </li>');
+    };
     NoteEditComponent.prototype.navigateBack = function () {
         this.router.navigate(['/notes/list/' + this.notePage]);
     };
@@ -345,7 +353,6 @@ var NotesListComponent = (function () {
             _this.noteService.createArrays(_this.notePage);
             _this.currentPageSections = _this.noteService.getCurrentPageSections();
         });
-        // setTimeout(() => { console.log(this.currentPageSections.length) }, 1000);
     };
     NotesListComponent.prototype.toAdd = function (sectionName) {
         this.router.navigate(['notes/note/' + this.notePage + '/new/' + sectionName]);
@@ -357,6 +364,7 @@ var NotesListComponent = (function () {
         this.currentPageSections.forEach(function (array) {
             array.splice(array.indexOf(note), 1);
         });
+        this.ngOnInit();
     };
     NotesListComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();
@@ -642,20 +650,21 @@ var NavbarComponent = (function () {
         this.angularFire.auth.subscribe(function (authState) {
             if (authState) {
                 _this.currentUser = authState.auth.email;
-                _this.notes = _this.noteService.getNotes();
-                _this.notes.forEach(function (element) {
-                    element.forEach(function (note) {
-                        if (_this.pageNamesArray.indexOf(note.page) == -1) {
-                            _this.pageNamesArray.push(note.page);
+                _this.noteService.getNotes().subscribe(function (response) {
+                    if (response) {
+                        response.forEach(function (note) {
+                            if (_this.pageNamesArray.indexOf(note.page) == -1) {
+                                _this.pageNamesArray.push(note.page);
+                            }
+                        });
+                        var _loop_1 = function(i) {
+                            _this.pageNotesArray.push(response.filter(function (item) {
+                                return item.page === _this.pageNamesArray[i];
+                            }));
+                        };
+                        for (var i = 0; i < _this.pageNamesArray.length; i++) {
+                            _loop_1(i);
                         }
-                    });
-                    var _loop_1 = function(i) {
-                        _this.pageNotesArray.push(element.filter(function (item) {
-                            return item.page === _this.pageNamesArray[i];
-                        }));
-                    };
-                    for (var i = 0; i < _this.pageNamesArray.length; i++) {
-                        _loop_1(i);
                     }
                 });
             }
@@ -916,14 +925,14 @@ module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div
 /***/ 559:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h3 id=\"section-title\">Choose a section for your {{notePage}} note</h3>\n  <div *ngIf=\"!addingNewPage\">\n    <button class=\"btn btn-info\" (click)=\"toggleRadios()\">{{sectionToggleButton}}</button>\n  </div>\n  <br>\n  <form [formGroup]=\"noteForm\" (ngSubmit)=\"onSubmit()\">\n    <div *ngIf=\"addingNewPage\">\n      <div class=\"form-group\">\n        <label for=\"page\">Page Name<small> must be all lowercase, no special symbols</small></label>\n        <input type=\"text\" formControlName=\"page\" id=\"page\" class=\"form-control\">\n      </div>\n    </div>\n    <div *ngIf=\"showRadios == false\">\n      <div class=\"form-group\">\n        <label for=\"section\">Section Name<small> must be all lowercase, no special symbols</small></label>\n        <input type=\"text\" formControlName=\"section\" id=\"section\" class=\"form-control\">\n      </div>\n    </div>\n    <div *ngIf=\"sections.length > 0 && showRadios == true\">\n      <div class=\"radio\" *ngFor=\"let section of sections\">\n        <label>\n            <input type=\"radio\" formControlName=\"section\" [value]=\"section\"><p>{{section}}</p>\n        </label>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"title\">Title</label>\n      <input formControlName=\"title\" type=\"text\" id=\"title\" class=\"form-control\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"content\">Content</label>\n      <label (click)=\"pasteCodeWrap('content')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('content')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('content')\"> [href tag]</label>\n      <textarea rows=\"10\" formControlName=\"content\" type=\"text\" id=\"content\" class=\"form-control\" name=\"text-area\">\n      </textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"side\">Optional Side Note</label>\n      <label (click)=\"pasteCodeWrap('side')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('side')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('side')\"> [href tag]</label>\n      <textarea rows=\"3\" formControlName=\"side\" type=\"text\" id=\"side\" class=\"form-control\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"important\">Optional Important Note</label>\n      <label (click)=\"pasteCodeWrap('important')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('important')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('important')\"> [href tag]</label>\n      <textarea rows=\"3\" formControlName=\"important\" type=\"text\" id=\"important\" class=\"form-control\"></textarea>\n    </div>\n    <button type=\"submit\" [disabled]=\"!noteForm.valid\" class=\"btn btn-primary\">Add Note</button>\n    <button class=\"btn\" type=\"button\" (click)=\"onCancel()\">Cancel</button>\n  </form>\n</div>"
+module.exports = "<div class=\"container\">\n  <h3 id=\"section-title\">Choose a section for your {{notePage}} note</h3>\n  <div *ngIf=\"!addingNewPage\">\n    <button class=\"btn btn-info\" (click)=\"toggleRadios()\">{{sectionToggleButton}}</button>\n  </div>\n  <br>\n  <form [formGroup]=\"noteForm\" (ngSubmit)=\"onSubmit()\">\n    <div *ngIf=\"addingNewPage\">\n      <div class=\"form-group\">\n        <label for=\"page\">Page Name<small> must be all lowercase, no special symbols</small></label>\n        <input type=\"text\" formControlName=\"page\" id=\"page\" class=\"form-control\">\n      </div>\n    </div>\n    <div *ngIf=\"showRadios == false\">\n      <div class=\"form-group\">\n        <label for=\"section\">Section Name<small> must be all lowercase, no special symbols</small></label>\n        <input type=\"text\" formControlName=\"section\" id=\"section\" class=\"form-control\">\n      </div>\n    </div>\n    <div *ngIf=\"sections.length > 0 && showRadios == true\">\n      <div class=\"radio\" *ngFor=\"let section of sections\">\n        <label>\n            <input type=\"radio\" formControlName=\"section\" [value]=\"section\"><p>{{section}}</p>\n        </label>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"title\">Title</label>\n      <input formControlName=\"title\" type=\"text\" id=\"title\" class=\"form-control\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"content\">Content</label>\n      <label (click)=\"pasteCodeWrap('content')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('content')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('content')\"> [href tag]</label>\n      <label (click)=\"pasteLi('content')\"> [li tag]</label>\n      <textarea rows=\"10\" formControlName=\"content\" type=\"text\" id=\"content\" class=\"form-control\" name=\"text-area\">\n      </textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"side\">Side Note</label>\n      <label (click)=\"pasteCodeWrap('side')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('side')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('side')\"> [href tag]</label>\n      <label (click)=\"pasteLi('side')\"> [li tag]</label>\n      <textarea rows=\"3\" formControlName=\"side\" type=\"text\" id=\"side\" class=\"form-control\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"important\">Important Note</label>\n      <label (click)=\"pasteCodeWrap('important')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('important')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('important')\"> [href tag]</label>\n      <label (click)=\"pasteLi('important')\"> [li tag]</label>\n      <textarea rows=\"3\" formControlName=\"important\" type=\"text\" id=\"important\" class=\"form-control\"></textarea>\n    </div>\n    <button type=\"submit\" [disabled]=\"!noteForm.valid\" class=\"btn btn-primary\">Add Note</button>\n    <button class=\"btn\" type=\"button\" (click)=\"onCancel()\">Cancel</button>\n  </form>\n</div>"
 
 /***/ }),
 
 /***/ 560:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <form [formGroup]=\"noteForm\" (ngSubmit)=\"onSubmit()\">\n    <h3 id=\"section-title\">Choose a section for your {{notePage}} note</h3>\n    <div class=\"radio\" *ngFor=\"let section of sections\">\n      <label>\n            <input type=\"radio\" formControlName=\"section\" [value]=\"section\"><p>{{section}}</p>\n      </label>\n    </div>\n    <br><br><br>\n    <div class=\"form-group\">\n      <label for=\"title\">Title</label>\n      <input formControlName=\"title\" type=\"text\" id=\"title\" class=\"form-control\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"content\">Content</label>\n      <label (click)=\"pasteCodeWrap('content')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('content')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('content')\"> [href tag]</label>\n      <textarea rows=\"10\" formControlName=\"content\" type=\"text\" id=\"content\" class=\"form-control\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"side\">Optional Side Note</label>\n      <label (click)=\"pasteCodeWrap('side')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('side')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('side')\"> [href tag]</label>\n      <textarea rows=\"3\" formControlName=\"side\" type=\"text\" id=\"side\" class=\"form-control\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"important\">Optional Important Note</label>\n      <label (click)=\"pasteCodeWrap('important')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('important')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('important')\"> [href tag]</label>\n      <textarea rows=\"3\" formControlName=\"important\" type=\"text\" id=\"important\" class=\"form-control\"></textarea>\n    </div>\n    <button type=\"submit\" [disabled]=\"!noteForm.valid\" class=\"btn btn-success\">Save</button>\n    <button (click)=\"onCancel()\" class=\"btn\">Cancel</button>\n  </form>\n</div>"
+module.exports = "<div class=\"container\">\n  <form [formGroup]=\"noteForm\" (ngSubmit)=\"onSubmit()\">\n    <h3 id=\"section-title\">Choose a section for your {{notePage}} note</h3>\n    <div class=\"radio\" *ngFor=\"let section of sections\">\n      <label>\n            <input type=\"radio\" formControlName=\"section\" [value]=\"section\"><p>{{section}}</p>\n      </label>\n    </div>\n    <br><br><br>\n    <div class=\"form-group\">\n      <label for=\"title\">Title</label>\n      <input formControlName=\"title\" type=\"text\" id=\"title\" class=\"form-control\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"content\">Content</label>\n      <label (click)=\"pasteCodeWrap('content')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('content')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('content')\"> [href tag]</label>\n      <label (click)=\"pasteLi('content')\"> [li tag]</label>\n      <textarea rows=\"10\" formControlName=\"content\" type=\"text\" id=\"content\" class=\"form-control\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"side\">Side Note</label>\n      <label (click)=\"pasteCodeWrap('side')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('side')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('side')\"> [href tag]</label>\n      <label (click)=\"pasteLi('side')\"> [li tag]</label>\n      <textarea rows=\"3\" formControlName=\"side\" type=\"text\" id=\"side\" class=\"form-control\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"important\">Important Note</label>\n      <label (click)=\"pasteCodeWrap('important')\"> [code wrap]</label>\n      <label (click)=\"pastePTag('important')\"> [p tag]</label>\n      <label (click)=\"pasteHRef('important')\"> [href tag]</label>\n      <label (click)=\"pasteLi('important')\"> [li tag]</label>\n      <textarea rows=\"3\" formControlName=\"important\" type=\"text\" id=\"important\" class=\"form-control\"></textarea>\n    </div>\n    <button type=\"submit\" [disabled]=\"!noteForm.valid\" class=\"btn btn-success\">Save</button>\n    <button (click)=\"onCancel()\" class=\"btn\">Cancel</button>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -1001,35 +1010,39 @@ var NoteService = (function () {
     NoteService.prototype.getSections = function () {
         return this.sectionArray;
     };
+    NoteService.prototype.looper = function (item) {
+        item.page;
+    };
     NoteService.prototype.createArrays = function (page) {
         var _this = this;
-        var array1 = [];
         this.currentPageNotes = [];
         this.currentPageSections = [];
-        this.notes.forEach(function (element) {
-            array1.push(element);
-            array1.forEach(function (note) {
-                note.forEach(function (item) {
-                    if (item.page === page) {
-                        _this.currentPageNotes.push(item);
-                        if (_this.sectionArray.indexOf(item.section) == -1) {
-                            _this.sectionArray.push(item.section);
+        this.getNotes().subscribe(function (response) {
+            if (response) {
+                new Promise(function (resolve, reject) {
+                    response.forEach(function (item) {
+                        if (item.page === page) {
+                            _this.currentPageNotes.push(item);
+                            if (_this.sectionArray.indexOf(item.section) == -1) {
+                                _this.sectionArray.push(item.section);
+                            }
+                            _this.sectionArray.slice((_this.sectionArray.length - 1), (_this.sectionArray.length));
                         }
-                        _this.sectionArray.slice((_this.sectionArray.length - 1), (_this.sectionArray.length));
+                        if (response.indexOf(item) === response.length - 1)
+                            resolve();
+                    });
+                }).then(function () {
+                    var _loop_1 = function(i) {
+                        _this.currentPageSections.push(_this.currentPageNotes.filter(function (item) {
+                            return item.section === _this.sectionArray[i];
+                        }));
+                    };
+                    for (var i = 0; i < _this.sectionArray.length; i++) {
+                        _loop_1(i);
                     }
                 });
-            });
-        });
-        setTimeout(function () {
-            var _loop_1 = function(i) {
-                _this.currentPageSections.push(_this.currentPageNotes.filter(function (item) {
-                    return item.section === _this.sectionArray[i];
-                }));
-            };
-            for (var i = 0; i < _this.sectionArray.length; i++) {
-                _loop_1(i);
             }
-        }, 3000);
+        });
     };
     NoteService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Injectable */])(), 
