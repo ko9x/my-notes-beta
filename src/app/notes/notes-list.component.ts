@@ -44,6 +44,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
     this.currentPageSections.forEach(array => {
       array.splice(array.indexOf(note), 1)
     });
+    this.ngOnInit();
   }
 
   ngOnDestroy() {
